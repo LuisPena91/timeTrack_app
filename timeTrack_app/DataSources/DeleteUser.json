@@ -1,0 +1,17 @@
+[
+  {
+    "ApiId": "/providers/microsoft.powerapps/apis/shared_logicflows",
+    "FlowNameId": "a452a94e-0931-4798-b97b-0d0acc90f2af",
+    "Name": "DeleteUser",
+    "ServiceKind": "ConnectedWadl",
+    "Type": "ServiceInfo",
+    "WorkflowEntityId": "d34264c2-6861-ef11-bfe2-7c1e521c1ad8"
+  },
+  {
+    "IsComponentScoped": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "Name": "DeleteUser",
+    "Type": "CollectionDataSourceInfo"
+  }
+]

@@ -1,0 +1,10 @@
+[
+  {
+    "ApiId": "/providers/microsoft.powerapps/apis/shared_logicflows",
+    "FlowNameId": "5ea458ce-e455-4c8d-8055-6d9d319adcec",
+    "Name": "NewUserEmail",
+    "ServiceKind": "ConnectedWadl",
+    "Type": "ServiceInfo",
+    "WorkflowEntityId": "7916db3c-6461-ef11-bfe2-7c1e521c1ad8"
+  }
+]

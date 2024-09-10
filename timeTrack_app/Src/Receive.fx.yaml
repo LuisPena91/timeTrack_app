@@ -1,0 +1,1622 @@
+Receive As screen:
+    BackgroundImage: =Xerox
+    Fill: =Color.White
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+    OnVisible: |-
+        =UpdateContext({CollectionQ:0});
+        UpdateContext({Progress:0})
+
+    Label1_7 As label:
+        Align: =Align.Center
+        BorderColor: =App.Theme.Colors.Darker40
+        BorderThickness: =1
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Fill: =RGBA(241, 244, 249, 1)
+        Font: =App.Theme.Font
+        FontWeight: =FontWeight.Bold
+        Height: =36
+        Size: =16
+        Text: ="PROJECT"
+        Width: =260
+        X: =49
+        Y: =129
+        ZIndex: =1
+
+    Label1_8 As label:
+        Align: =Align.Center
+        BorderColor: =App.Theme.Colors.Darker40
+        BorderThickness: =1
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Fill: =RGBA(241, 244, 249, 1)
+        Font: =App.Theme.Font
+        FontWeight: =FontWeight.Bold
+        Height: =37
+        Size: =16
+        Text: ="BOX ID"
+        Width: =260
+        X: =49
+        Y: =190
+        ZIndex: =2
+
+    Header2_3 As Header:
+        BasePaletteColor: =
+        DisplayMode: =DisplayMode.Edit
+        FontColor: =
+        Height: =86
+        IsLogoVisible: =true
+        IsProfilePictureVisible: =true
+        IsTitleVisible: =false
+        Logo: ='Xerox-logo'
+        LogoTooltip: =""
+        OnSelectLogo: |-
+            =Navigate(Input,ScreenTransition.UnCoverRight);
+            Reset(ComboboxProjectLoad)
+        Title: =App.ActiveScreen.Name
+        UserEmail: =User().Email
+        UserImage: =User().Image
+        UserName: =User().FullName
+        Visible: =true
+        Width: =Parent.Width
+        X: =0
+        Y: =0
+        ZIndex: =3
+
+    ComboboxProjectLoad As Combobox.pcfdataset:
+        DisplayMode: =DisplayMode.Edit
+        Height: =36
+        Items: =Project_1
+        Width: =325
+        X: =332
+        Y: =129
+        ZIndex: =4
+
+        "'Box ID1' As PowerApps_CoreControls_ComboboxCanvasTemplate_dataField.textualColumn":
+            FieldDisplayName: ="Box ID"
+            FieldName: ="Title"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =2
+            ZIndex: =5
+
+    Container1 As groupContainer.manualLayoutContainer:
+        BorderThickness: =1.5
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(0, 0, 0, 0.15)
+        Height: =502
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =1266
+        X: =49
+        Y: =253
+        ZIndex: =5
+
+        "TextInputBox As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            OnChange: =
+            Width: =320
+            X: =52
+            Y: =28
+            ZIndex: =1
+
+        "TextInputBox_1 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            Width: =320
+            X: =52
+            Y: =60
+            ZIndex: =2
+
+        "TextInputBox_2 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            Width: =320
+            X: =52
+            Y: =92
+            ZIndex: =3
+
+        "TextInputBox_3 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            Width: =320
+            X: =52
+            Y: =124
+            ZIndex: =4
+
+        "TextInputBox_4 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            Width: =320
+            X: =52
+            Y: =156
+            ZIndex: =5
+
+        "TextInputBox_5 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            Width: =320
+            X: =52
+            Y: =188
+            ZIndex: =6
+
+        "TextInputBox_6 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            Width: =320
+            X: =52
+            Y: =220
+            ZIndex: =7
+
+        "TextInputBox_7 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            Width: =320
+            X: =52
+            Y: =252
+            ZIndex: =8
+
+        "TextInputBox_8 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            Width: =320
+            X: =52
+            Y: =284
+            ZIndex: =9
+
+        "TextInputBox_9 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            Width: =320
+            X: =52
+            Y: =316
+            ZIndex: =10
+
+        "TextInputBox_10 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            Width: =320
+            X: =52
+            Y: =348
+            ZIndex: =11
+
+        "TextInputBox_11 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            Width: =320
+            X: =52
+            Y: =380
+            ZIndex: =12
+
+        "TextInputBox_12 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            Width: =320
+            X: =52
+            Y: =412
+            ZIndex: =13
+
+        "TextInputBox_13 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            Width: =320
+            X: =471
+            Y: =28
+            ZIndex: =14
+
+        "TextInputBox_14 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            Width: =320
+            X: =471
+            Y: =60
+            ZIndex: =15
+
+        "TextInputBox_15 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            Width: =320
+            X: =471
+            Y: =92
+            ZIndex: =16
+
+        "TextInputBox_16 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            Width: =320
+            X: =471
+            Y: =124
+            ZIndex: =17
+
+        "TextInputBox_17 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            Width: =320
+            X: =471
+            Y: =156
+            ZIndex: =18
+
+        "TextInputBox_18 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            Width: =320
+            X: =471
+            Y: =188
+            ZIndex: =19
+
+        "TextInputBox_19 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            Width: =320
+            X: =471
+            Y: =220
+            ZIndex: =20
+
+        "TextInputBox_20 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            Width: =320
+            X: =471
+            Y: =252
+            ZIndex: =21
+
+        "TextInputBox_21 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            Width: =320
+            X: =471
+            Y: =284
+            ZIndex: =22
+
+        "TextInputBox_22 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            Width: =320
+            X: =471
+            Y: =316
+            ZIndex: =23
+
+        "TextInputBox_23 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            Width: =320
+            X: =471
+            Y: =348
+            ZIndex: =24
+
+        "TextInputBox_24 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            Width: =320
+            X: =471
+            Y: =380
+            ZIndex: =25
+
+        "TextInputBox_25 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            Width: =320
+            X: =471
+            Y: =412
+            ZIndex: =26
+
+        "TextInputBox_26 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            OnChange: =
+            Width: =320
+            X: =891
+            Y: =28
+            ZIndex: =27
+
+        "TextInputBox_27 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            OnChange: =
+            Width: =320
+            X: =891
+            Y: =60
+            ZIndex: =28
+
+        "TextInputBox_28 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            OnChange: =
+            Width: =320
+            X: =891
+            Y: =92
+            ZIndex: =29
+
+        "TextInputBox_29 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            OnChange: =
+            Width: =320
+            X: =891
+            Y: =124
+            ZIndex: =30
+
+        "TextInputBox_30 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            OnChange: =
+            Width: =320
+            X: =891
+            Y: =156
+            ZIndex: =31
+
+        "TextInputBox_31 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            OnChange: =
+            Width: =320
+            X: =891
+            Y: =188
+            ZIndex: =32
+
+        "TextInputBox_32 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            OnChange: =
+            Width: =320
+            X: =891
+            Y: =220
+            ZIndex: =33
+
+        "TextInputBox_33 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            OnChange: =
+            Width: =320
+            X: =891
+            Y: =252
+            ZIndex: =34
+
+        "TextInputBox_34 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            OnChange: =
+            Width: =320
+            X: =891
+            Y: =284
+            ZIndex: =35
+
+        "TextInputBox_35 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            OnChange: =
+            Width: =320
+            X: =891
+            Y: =316
+            ZIndex: =36
+
+        "TextInputBox_36 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            OnChange: =
+            Width: =320
+            X: =891
+            Y: =348
+            ZIndex: =37
+
+        "TextInputBox_37 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            OnChange: =
+            Width: =320
+            X: =891
+            Y: =380
+            ZIndex: =38
+
+        "TextInputBox_38 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            OnChange: =
+            Width: =320
+            X: =891
+            Y: =412
+            ZIndex: =39
+
+        "TextInputBox_39 As 'Text input'":
+            Align: ='TextInputCanvas.Align'.Start
+            Appearance: ='TextInputCanvas.Appearance'.Outline
+            BasePaletteColor: =
+            BorderColor: =RGBA(83, 144, 164, 1)
+            BorderRadius: =1.5
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =32
+            OnChange: =
+            Width: =320
+            X: =471
+            Y: =444
+            ZIndex: =40
+
+    Button8_3 As button:
+        BorderColor: =App.Theme.Colors.Primary
+        DisabledBorderColor: =RGBA(244, 244, 244, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        DisplayMode: |-
+            =If(
+                IsBlank(ComboboxProjectLoad.Selected.PROJECT),
+                DisplayMode.Disabled,
+                DisplayMode.Edit
+            )
+        Fill: =App.Theme.Colors.Primary
+        Font: =Font.'Courier New'
+        FontWeight: =FontWeight.Semibold
+        Height: =44
+        HoverBorderColor: =App.Theme.Colors.Darker10
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =App.Theme.Colors.Darker10
+        OnSelect: |+
+            =UpdateContext({varLoader:true,varStartTimer:false});
+            If(!(IsBlank(TextInputBox.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_1.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_2.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_3.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_4.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_5.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_6.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_7.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_8.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_9.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_10.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_11.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_12.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_13.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_14.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_15.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_16.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_17.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_18.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_19.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_20.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_21.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_22.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_23.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_24.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_25.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_26.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_27.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_28.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_29.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_30.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_31.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_32.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_33.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_34.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_35.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_36.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_37.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_38.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            If(!(IsBlank(TextInputBox_39.Value)),UpdateContext({CollectionQ: CollectionQ + 1}));
+            
+            UpdateContext({varStartTimer:true});
+            ClearCollect(
+                BoxesReceive,
+                {
+                    'Box ID': TextInputBox.Value,
+                    Project: ComboboxProjectLoad.Selected.PROJECT,
+                    'Date IN': Today(),
+                    Status: "IN",
+                    Id: Concatenate(
+                        ComboboxProjectLoad.Selected.PROJECT,
+                        TextInputBox.Value
+                    )
+                },
+                If(
+                    IsBlank(TextInputBox_1.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_1.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_1.Value
+                        ) 
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_2.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_2.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_2.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_3.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_3.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_3.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_4.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_4.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_4.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_5.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_5.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_5.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_6.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_6.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_6.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_7.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_7.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_7.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_8.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_8.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_8.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_9.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_9.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_9.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_10.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_10.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_10.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_11.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_11.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_11.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_12.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_12.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_12.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_13.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_13.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_13.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_14.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_14.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_14.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_15.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_15.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_15.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_16.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_16.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_16.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_17.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_17.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_17.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_18.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_18.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_18.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_19.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_19.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_19.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_20.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_20.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_20.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_21.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_21.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_21.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_22.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_22.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_22.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_23.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_23.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_23.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_24.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_24.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_24.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_25.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_25.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_25.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_26.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_26.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_26.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_27.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_27.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_27.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_28.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_28.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_28.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_29.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_29.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_29.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_30.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_30.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_30.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_31.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_31.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_31.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_32.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_32.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_32.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_33.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_33.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_33.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_34.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_34.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_34.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_35.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_35.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_35.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_36.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_36.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_36.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_37.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_37.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_37.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_38.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_38.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_38.Value
+                        )
+                    }
+                ),
+                If(
+                    IsBlank(TextInputBox_39.Value),
+                    Blank(),
+                    {
+                        'Box ID': TextInputBox_39.Value,
+                        Project: ComboboxProjectLoad.Selected.PROJECT,
+                        'Date IN': Today(),
+                        Status: "IN",
+                        Id: Concatenate(
+                            ComboboxProjectLoad.Selected.PROJECT,
+                            TextInputBox_39.Value
+                        )
+                    }
+                )
+            );
+            
+            ForAll(BoxesReceive,Patch(BoxesList,Defaults(BoxesList),{'Box ID':Upper(ThisRecord.'Box ID'),Project:ThisRecord.Project,'Date IN':ThisRecord.'Date IN',Status:ThisRecord.Status,Id:Upper(ThisRecord.Id)}));
+            
+            Set(varJSON, JSON(BoxesReceive));
+            ReceiveFlow.Run(varJSON);
+            
+            Reset(ComboboxProjectLoad);
+            Reset(TextInputBox);
+            Reset(TextInputBox_1);
+            Reset(TextInputBox_2);
+            Reset(TextInputBox_3);
+            Reset(TextInputBox_4);
+            Reset(TextInputBox_5);
+            Reset(TextInputBox_6);
+            Reset(TextInputBox_7);
+            Reset(TextInputBox_8);
+            Reset(TextInputBox_9);
+            Reset(TextInputBox_10);
+            Reset(TextInputBox_11);
+            Reset(TextInputBox_12);
+            Reset(TextInputBox_13);
+            Reset(TextInputBox_14);
+            Reset(TextInputBox_15);
+            Reset(TextInputBox_16);
+            Reset(TextInputBox_17);
+            Reset(TextInputBox_18);
+            Reset(TextInputBox_19);
+            Reset(TextInputBox_20);
+            Reset(TextInputBox_21);
+            Reset(TextInputBox_22);
+            Reset(TextInputBox_23);
+            Reset(TextInputBox_24);
+            Reset(TextInputBox_25);
+            Reset(TextInputBox_26);
+            Reset(TextInputBox_27);
+            Reset(TextInputBox_28);
+            Reset(TextInputBox_29);
+            Reset(TextInputBox_30);
+            Reset(TextInputBox_31);
+            Reset(TextInputBox_32);
+            Reset(TextInputBox_33);
+            Reset(TextInputBox_34);
+            Reset(TextInputBox_35);
+            Reset(TextInputBox_36);
+            Reset(TextInputBox_37);
+            Reset(TextInputBox_38);
+            Reset(TextInputBox_39);
+            
+            
+        PressedBorderColor: =App.Theme.Colors.Darker40
+        PressedColor: =Self.Color
+        PressedFill: =App.Theme.Colors.Darker40
+        Size: =15
+        Text: ="Load"
+        Width: =193
+        X: =820
+        Y: =129
+        ZIndex: =6
+
+    ButtonReturn As button:
+        BorderColor: =App.Theme.Colors.Primary
+        DisabledBorderColor: =RGBA(244, 244, 244, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        DisplayMode: |
+            =
+        Fill: =App.Theme.Colors.Primary
+        Font: =Font.'Courier New'
+        FontWeight: =FontWeight.Semibold
+        Height: =44
+        HoverBorderColor: =App.Theme.Colors.Darker10
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =App.Theme.Colors.Darker10
+        OnSelect: |-
+            =Navigate(Input,ScreenTransition.UnCoverRight);
+            Reset(ComboboxProjectLoad);
+            Reset(TextInputBox);
+            Reset(TextInputBox_1);
+            Reset(TextInputBox_2);
+            Reset(TextInputBox_3);
+            Reset(TextInputBox_4);
+            Reset(TextInputBox_5);
+            Reset(TextInputBox_6);
+            Reset(TextInputBox_7);
+            Reset(TextInputBox_8);
+            Reset(TextInputBox_9);
+            Reset(TextInputBox_10);
+            Reset(TextInputBox_11);
+            Reset(TextInputBox_12);
+            Reset(TextInputBox_13);
+            Reset(TextInputBox_14);
+            Reset(TextInputBox_15);
+            Reset(TextInputBox_16);
+            Reset(TextInputBox_17);
+            Reset(TextInputBox_18);
+            Reset(TextInputBox_19);
+            Reset(TextInputBox_20);
+            Reset(TextInputBox_21);
+            Reset(TextInputBox_22);
+            Reset(TextInputBox_23);
+            Reset(TextInputBox_24);
+            Reset(TextInputBox_25);
+            Reset(TextInputBox_26);
+            Reset(TextInputBox_27);
+            Reset(TextInputBox_28);
+            Reset(TextInputBox_29);
+            Reset(TextInputBox_30);
+            Reset(TextInputBox_31);
+            Reset(TextInputBox_32);
+            Reset(TextInputBox_33);
+            Reset(TextInputBox_34);
+            Reset(TextInputBox_35);
+            Reset(TextInputBox_36);
+            Reset(TextInputBox_37);
+            Reset(TextInputBox_38);
+            Reset(TextInputBox_39);
+        PressedBorderColor: =App.Theme.Colors.Darker40
+        PressedColor: =Self.Color
+        PressedFill: =App.Theme.Colors.Darker40
+        Size: =15
+        Text: ="Return"
+        Width: =193
+        X: =1085
+        Y: =129
+        ZIndex: =7
+
+    Label5_1 As label:
+        Align: =Align.Center
+        BorderColor: =App.Theme.Colors.Darker40
+        Color: =RGBA(255, 255, 255, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Font: =App.Theme.Font
+        FontWeight: =FontWeight.Bold
+        Height: =48
+        Size: =35
+        Text: ="RECEIVE BOXES"
+        Width: =514
+        X: =425
+        Y: =19
+        ZIndex: =8
+
+    Container2 As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(0, 0, 0, 0.25)
+        Height: =768
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Visible: =varLoader
+        Width: =1366
+        ZIndex: =9
+
+        Container3 As groupContainer.manualLayoutContainer:
+            BorderColor: =RGBA(180, 214, 250, 1)
+            BorderThickness: =5
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =238
+            RadiusBottomLeft: =20
+            RadiusBottomRight: =20
+            RadiusTopLeft: =20
+            RadiusTopRight: =20
+            Width: =958
+            X: =212
+            Y: =108
+            ZIndex: =1
+
+            "Progress1 As 'Progress Bar'":
+                BasePaletteColor: =
+                DisplayMode: =DisplayMode.Edit
+                Height: =57
+                Max: =CollectionQ
+                ProgressColor: ='Progress.ProgressColor'.Brand
+                Thickness: ='Progress.Thickness'.Large
+                Value: =Progress
+                Width: =852
+                X: =52
+                Y: =40
+                ZIndex: =1
+
+            Timer1 As timer:
+                BorderColor: =App.Theme.Colors.Primary
+                DisabledBorderColor: =RGBA(244, 244, 244, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Duration: =1000
+                Fill: =App.Theme.Colors.Primary
+                Font: =App.Theme.Font
+                HoverBorderColor: =App.Theme.Colors.Darker10
+                HoverColor: =RGBA(255, 255, 255, 1)
+                HoverFill: =App.Theme.Colors.Darker10
+                OnTimerEnd: |-
+                    =If(
+                        Progress = CollectionQ,
+                        UpdateContext({varLoader: false});
+                        UpdateContext(
+                            {
+                                Progress: 0,
+                                CollectionQ: 0
+                            }
+                        );
+                        Notify(
+                        "New boxes loaded successfully",
+                        NotificationType.Success),
+                        UpdateContext({Progress: Progress + 1});
+                        UpdateContext({varStartTimer: false});
+                        UpdateContext({varStartTimer: true})
+                    )
+                PressedBorderColor: =App.Theme.Colors.Darker40
+                PressedColor: =Self.Color
+                PressedFill: =App.Theme.Colors.Darker40
+                Start: =varStartTimer
+                Visible: =false
+                X: =24
+                Y: =152
+                ZIndex: =2
+
+            TextCanvas1 As Text:
+                Align: ='TextCanvas.Align'.Center
+                AutoHeight: =false
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                Font: =Font.'Courier New'
+                FontColor: =RGBA(0, 0, 0, 1)
+                Height: =57
+                Size: =20
+                Text: =Text(Progress,"0") & " out of " & CollectionQ & " boxes have been load"
+                VerticalAlign: ='TextCanvas.VerticalAlign'.Middle
+                Weight: ='TextCanvas.Weight'.Bold
+                Width: =852
+                X: =52
+                Y: =122
+                ZIndex: =3
+
+    ButtonCanvas2 As Button:
+        BasePaletteColor: =
+        BorderColor: =
+        DisplayMode: =DisplayMode.Edit
+        FontColor: =
+        Height: =32
+        OnSelect: |-
+            =UpdateContext({varLoader:!varLoader})
+        Visible: =false
+        Width: =96
+        X: =0
+        Y: =0
+        ZIndex: =10
+

@@ -1,0 +1,541 @@
+"'View/Edit' As screen":
+    BackgroundImage: =Xerox
+    Fill: =Color.White
+    ImagePosition: =ImagePosition.Fill
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+
+    Label1_3 As label:
+        BorderColor: =App.Theme.Colors.Darker40
+        BorderThickness: =2
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Fill: =RGBA(241, 244, 249, 1)
+        Font: =App.Theme.Font
+        Size: =13
+        Text: |-
+            ="TASK
+            "
+        X: =79
+        Y: =128
+        ZIndex: =1
+
+    Label1_4 As label:
+        BorderColor: =App.Theme.Colors.Darker40
+        BorderThickness: =2
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Fill: =RGBA(241, 244, 249, 1)
+        Font: =App.Theme.Font
+        Size: =13
+        Text: ="PROJECT"
+        X: =79
+        Y: =168
+        ZIndex: =2
+
+    Label1_5 As label:
+        BorderColor: =App.Theme.Colors.Darker40
+        BorderThickness: =2
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Fill: =RGBA(241, 244, 249, 1)
+        Font: =App.Theme.Font
+        Size: =13
+        Text: ="BOX ID"
+        X: =79
+        Y: =208
+        ZIndex: =3
+
+    Label2_3 As label:
+        BorderColor: =App.Theme.Colors.Darker40
+        BorderThickness: =2
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Fill: =RGBA(241, 244, 249, 1)
+        Size: =13
+        Text: ="FOLDERS"
+        X: =79
+        Y: =248
+        ZIndex: =4
+
+    Label2_4 As label:
+        BorderColor: =App.Theme.Colors.Darker40
+        BorderThickness: =2
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Fill: =RGBA(241, 244, 249, 1)
+        Size: =13
+        Text: ="IMAGES"
+        X: =79
+        Y: =288
+        ZIndex: =5
+
+    Label2_5 As label:
+        BorderColor: =App.Theme.Colors.Darker40
+        BorderThickness: =2
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Fill: =RGBA(241, 244, 249, 1)
+        Size: =13
+        Text: ="COMMENTS"
+        X: =79
+        Y: =328
+        ZIndex: =6
+
+    TextInputImages_1 As text:
+        AccessibleLabel: ="Images"
+        BorderColor: =App.Theme.Colors.Darker40
+        BorderThickness: =2
+        Color: =RGBA(0, 0, 0, 1)
+        Default: |+
+            =DataTableProductivity.Selected.Images
+            
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        FocusedBorderThickness: =4
+        Font: =Font.'Courier New'
+        Format: =TextFormat.Number
+        HoverBorderColor: =App.Theme.Colors.Darker40
+        HoverColor: =RGBA(0, 0, 0, 1)
+        HoverFill: =App.Theme.Colors.Lighter70
+        Reset: =true
+        Size: =13
+        X: =229
+        Y: =288
+        ZIndex: =7
+
+    TextInputComments_1 As text:
+        AccessibleLabel: ="Comments"
+        BorderColor: =App.Theme.Colors.Darker40
+        BorderThickness: =2
+        Color: =RGBA(0, 0, 0, 1)
+        Default: =DataTableProductivity.Selected.Comments
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        FocusedBorderThickness: =4
+        Font: =Font.'Courier New'
+        Height: =95
+        HoverBorderColor: =App.Theme.Colors.Darker40
+        HoverColor: =RGBA(0, 0, 0, 1)
+        HoverFill: =App.Theme.Colors.Lighter70
+        Mode: =TextMode.MultiLine
+        Reset: =true
+        Size: =13
+        X: =229
+        Y: =328
+        ZIndex: =8
+
+    Button2 As button:
+        BorderColor: =App.Theme.Colors.Primary
+        DisabledBorderColor: =RGBA(244, 244, 244, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Fill: =App.Theme.Colors.Primary
+        Font: =Font.'Courier New'
+        FontWeight: =FontWeight.Semibold
+        Height: =35
+        HoverBorderColor: =App.Theme.Colors.Darker10
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =App.Theme.Colors.Darker10
+        OnSelect: |+
+            =Navigate(Input,ScreenTransition.UnCoverRight);
+            Reset(ComboBoxTask_1);
+            Reset(ComboBoxProject_1);
+            Reset(ComboBoxBoxId_1)
+            
+            
+        PressedBorderColor: =App.Theme.Colors.Darker40
+        PressedColor: =Self.Color
+        PressedFill: =App.Theme.Colors.Darker40
+        Size: =15
+        Text: ="Return"
+        X: =229
+        Y: =653
+        ZIndex: =9
+
+    TextInputStatus As text:
+        AccessibleLabel: ="Status"
+        BorderColor: =App.Theme.Colors.Darker40
+        BorderThickness: =2
+        Color: =RGBA(0, 0, 0, 1)
+        Default: =DataTableProductivity.Selected.Status
+        DisabledBorderColor: =RGBA(237, 237, 237, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        DisplayMode: =DisplayMode.View
+        Fill: =RGBA(227, 234, 243, 1)
+        FocusedBorderThickness: =4
+        Font: =Font.'Courier New'
+        FontWeight: =FontWeight.Bold
+        HoverBorderColor: =App.Theme.Colors.Darker40
+        HoverColor: =RGBA(0, 0, 0, 1)
+        HoverFill: =App.Theme.Colors.Lighter70
+        Reset: =true
+        Size: =13
+        X: =229
+        Y: =423
+        ZIndex: =10
+
+    Label4 As label:
+        BorderColor: =App.Theme.Colors.Darker40
+        BorderThickness: =2
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Fill: =RGBA(241, 244, 249, 1)
+        Font: =App.Theme.Font
+        Size: =13
+        Text: ="STATUS"
+        X: =79
+        Y: =423
+        ZIndex: =11
+
+    Label4_1 As label:
+        BorderColor: =App.Theme.Colors.Darker40
+        BorderThickness: =2
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Fill: =RGBA(241, 244, 249, 1)
+        Font: =App.Theme.Font
+        Size: =13
+        Text: ="USER"
+        X: =79
+        Y: =463
+        ZIndex: =12
+
+    TextInputUser As text:
+        AccessibleLabel: ="User Id"
+        BorderColor: =App.Theme.Colors.Darker40
+        BorderThickness: =2
+        Color: =RGBA(0, 0, 0, 1)
+        Default: =DataTableProductivity.Selected.UserId
+        DisabledBorderColor: =RGBA(237, 237, 237, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        DisplayMode: =DisplayMode.View
+        Fill: =RGBA(227, 234, 243, 1)
+        FocusedBorderThickness: =4
+        Font: =Font.'Courier New'
+        FontWeight: =FontWeight.Bold
+        HoverBorderColor: =App.Theme.Colors.Darker40
+        HoverColor: =RGBA(0, 0, 0, 1)
+        HoverFill: =App.Theme.Colors.Lighter70
+        Reset: =true
+        Size: =13
+        X: =229
+        Y: =463
+        ZIndex: =13
+
+    ButtonEdit As button:
+        BorderColor: =App.Theme.Colors.Primary
+        DisabledBorderColor: =RGBA(244, 244, 244, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        DisplayMode: =If(TextInputStatus.Text = "CLOSE" , DisplayMode.Edit,DisplayMode.Disabled)
+        Fill: =App.Theme.Colors.Primary
+        Font: =Font.'Courier New'
+        FontWeight: =FontWeight.Semibold
+        HoverBorderColor: =App.Theme.Colors.Darker10
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =App.Theme.Colors.Darker10
+        OnSelect: |+
+            =UpdateContext({selectedRecord: User().Email});
+            Patch(
+                Productivity,
+                LookUp(
+                    Productivity,
+                    UserEmail = selectedRecord && EndDate = DataTableProductivity.Selected.EndDate && EndTime = DataTableProductivity.Selected.EndTime
+                ),
+                {
+                    Task: Upper(TextInputTask2.Text),
+                    Project: Upper(TextInputProject2.Text),
+                    BoxId: TextInputBoxId2.Text,
+                    Folders: Value(TextInputFolders_1.Text),
+                    Images: Value(TextInputImages_1.Text),
+                    Comments: TextInputComments_1.Text
+                }
+            );
+            
+            Notify(
+                "We've saved your task changes",
+                NotificationType.Success
+            )
+            
+        PressedBorderColor: =App.Theme.Colors.Darker40
+        PressedColor: =Self.Color
+        PressedFill: =App.Theme.Colors.Darker40
+        Size: =15
+        Text: ="Edit"
+        X: =229
+        Y: =558
+        ZIndex: =14
+
+    Header2_1 As Header:
+        BasePaletteColor: =
+        DisplayMode: =DisplayMode.Edit
+        FontColor: =
+        Height: =86
+        IsLogoVisible: =true
+        IsProfilePictureVisible: =true
+        IsTitleVisible: =false
+        Logo: ='Xerox-logo'
+        LogoTooltip: =""
+        OnSelectLogo: =Navigate(Input,ScreenTransition.UnCoverRight);
+        Title: =App.ActiveScreen.Name
+        UserEmail: =User().Email
+        UserImage: =User().Image
+        UserName: =User().FullName
+        Visible: =true
+        Width: =Parent.Width
+        X: =0
+        Y: =0
+        ZIndex: =15
+
+    DataTableProductivity As Table.pcfdataset:
+        DisplayMode: =DisplayMode.Edit
+        HeaderFontSize: =20
+        Height: =560
+        Items: =Filter(Productivity,UserEmail = User().Email , Date = Today())
+        onCellValueChange: =false
+        onFilter: =false
+        onNavigate: =false
+        onRowSelect: =false
+        onSave: =false
+        OnSelect: =false
+        ReflowBehavior: ='PowerAppsOneGrid.ReflowBehavior'.Reflow
+        ShowFooter: ="NO"
+        Width: =775
+        X: =573
+        Y: =128
+        ZIndex: =16
+
+        Task2_1 As PowerAppsOneGridTemplate_dataField.textualColumn:
+            FieldDisplayName: ="Task"
+            FieldName: ="field_8"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =9
+            Width: =0
+            ZIndex: =24
+
+        Project2_1 As PowerAppsOneGridTemplate_dataField.textualColumn:
+            FieldDisplayName: ="Project"
+            FieldName: ="field_9"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =10
+            Width: =0
+            ZIndex: =25
+
+        BoxId1_1 As PowerAppsOneGridTemplate_dataField.textualColumn:
+            FieldDisplayName: ="BoxId"
+            FieldName: ="field_10"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =11
+            Width: =0
+            ZIndex: =26
+
+        Folders2_1 As PowerAppsOneGridTemplate_dataField.textualColumn:
+            FieldDisplayName: ="Folders"
+            FieldName: ="field_11"
+            FieldType: ="n"
+            FieldVariantName: ="textualColumn"
+            Order: =12
+            Width: =0
+            ZIndex: =27
+
+        Images2_1 As PowerAppsOneGridTemplate_dataField.textualColumn:
+            FieldDisplayName: ="Images"
+            FieldName: ="field_12"
+            FieldType: ="n"
+            FieldVariantName: ="textualColumn"
+            Order: =13
+            Width: =0
+            ZIndex: =28
+
+        Status2_1 As PowerAppsOneGridTemplate_dataField.textualColumn:
+            FieldDisplayName: ="Status"
+            FieldName: ="field_14"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =15
+            Width: =0
+            ZIndex: =30
+
+    ComboBoxTask_1 As Combobox.pcfdataset:
+        Appearance: ='ComboboxCanvas.Appearance'.FilledLighter
+        BasePaletteColor: =
+        BorderColor: =RGBA(12, 59, 94, 1)
+        BorderStyle: =BorderStyle.Solid
+        BorderThickness: =2
+        DisplayMode: =DisplayMode.Edit
+        Height: =40
+        Items: =Filter(Task_1,task_id > 100,task_id < 200)
+        Width: =319
+        X: =229
+        Y: =128
+        ZIndex: =17
+
+        TASK1_1 As PowerApps_CoreControls_ComboboxCanvasTemplate_dataField.textualColumn:
+            FieldDisplayName: ="TASK"
+            FieldName: ="Title"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =1
+            ZIndex: =31
+
+    ComboBoxProject_1 As Combobox.pcfdataset:
+        Appearance: ='ComboboxCanvas.Appearance'.FilledLighter
+        BorderColor: =RGBA(12, 59, 94, 1)
+        BorderStyle: =BorderStyle.Solid
+        BorderThickness: =2
+        DisplayMode: |
+            =DisplayMode.Edit
+        Height: =42
+        IsSearchable: =true
+        Items: =Sort(Project_1,PROJECT,SortOrder.Ascending)
+        Width: =319
+        X: =229
+        Y: =167
+        ZIndex: =18
+
+        PROJECT1_1 As PowerApps_CoreControls_ComboboxCanvasTemplate_dataField.textualColumn:
+            FieldDisplayName: ="PROJECT"
+            FieldName: ="Title"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =1
+            ZIndex: =32
+
+        M_BoxId2_1 As PowerApps_CoreControls_ComboboxCanvasTemplate_dataField.textualColumn:
+            FieldDisplayName: ="M_BoxId"
+            FieldName: ="M_BoxId"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =2
+            ZIndex: =33
+
+        Attachments2_1 As PowerApps_CoreControls_ComboboxCanvasTemplate_dataField.textualColumn:
+            FieldDisplayName: ="Attachments"
+            FieldName: ="{Attachments}"
+            FieldType: ="r*"
+            FieldVariantName: ="textualColumn"
+            Order: =3
+            ZIndex: =34
+
+    ComboBoxBoxId_1 As Combobox.pcfdataset:
+        Appearance: ='ComboboxCanvas.Appearance'.FilledLighter
+        BorderColor: =RGBA(12, 59, 94, 1)
+        BorderStyle: =BorderStyle.Solid
+        BorderThickness: =2
+        DisplayMode: |
+            =DisplayMode.Edit
+        Height: =41
+        Items: =Filter(BoxesList,Project = TextInputProject2.Text,Status = "IN")
+        Width: =319
+        X: =229
+        Y: =208
+        ZIndex: =19
+
+        "'Box ID2_1' As PowerApps_CoreControls_ComboboxCanvasTemplate_dataField.textualColumn":
+            FieldDisplayName: ="Box ID"
+            FieldName: ="Title"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =2
+            ZIndex: =36
+
+    TextInputBoxId2 As text:
+        AccessibleLabel: ="Box Id"
+        BorderColor: =App.Theme.Colors.Darker40
+        BorderThickness: =2
+        Color: =RGBA(0, 0, 0, 1)
+        Default: =If(IsBlank(ComboBoxBoxId_1.Selected.'Box ID'),DataTableProductivity.Selected.BoxId,ComboBoxBoxId_1.Selected.'Box ID')
+        DisabledBorderColor: =RGBA(237, 237, 237, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        DisplayMode: =DisplayMode.View
+        FocusedBorderThickness: =4
+        Font: =Font.'Courier New'
+        FontWeight: =FontWeight.Bold
+        Height: =33
+        HoverBorderColor: =App.Theme.Colors.Darker40
+        HoverColor: =RGBA(0, 0, 0, 1)
+        HoverFill: =App.Theme.Colors.Lighter70
+        Reset: =true
+        Size: =13
+        Width: =275
+        X: =230
+        Y: =210
+        ZIndex: =20
+
+    TextInputProject2 As text:
+        AccessibleLabel: ="Project"
+        BorderColor: =App.Theme.Colors.Darker40
+        BorderThickness: =2
+        Color: =RGBA(0, 0, 0, 1)
+        Default: =If(IsBlank(ComboBoxProject_1.Selected.PROJECT),DataTableProductivity.Selected.Project,ComboBoxProject_1.Selected.PROJECT)
+        DisabledBorderColor: =RGBA(237, 237, 237, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        DisplayMode: =DisplayMode.View
+        FocusedBorderThickness: =4
+        Font: =Font.'Courier New'
+        FontWeight: =FontWeight.Bold
+        Height: =33
+        HoverBorderColor: =App.Theme.Colors.Darker40
+        HoverColor: =RGBA(0, 0, 0, 1)
+        HoverFill: =App.Theme.Colors.Lighter70
+        Reset: =true
+        Size: =13
+        Width: =275
+        X: =230
+        Y: =170
+        ZIndex: =21
+
+    TextInputTask2 As text:
+        AccessibleLabel: ="Task"
+        BorderColor: =App.Theme.Colors.Darker40
+        BorderThickness: =2
+        Color: =RGBA(0, 0, 0, 1)
+        Default: =If(IsBlank(ComboBoxTask_1.Selected.TASK),DataTableProductivity.Selected.Task,ComboBoxTask_1.Selected.TASK)
+        DisabledBorderColor: =RGBA(237, 237, 237, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        DisplayMode: =DisplayMode.View
+        FocusedBorderThickness: =4
+        Font: =Font.'Courier New'
+        FontWeight: =FontWeight.Bold
+        Height: =33
+        HoverBorderColor: =App.Theme.Colors.Darker40
+        HoverColor: =RGBA(0, 0, 0, 1)
+        HoverFill: =App.Theme.Colors.Lighter70
+        Reset: =true
+        Size: =13
+        Width: =275
+        X: =230
+        Y: =130
+        ZIndex: =22
+
+    TextInputFolders_1 As text:
+        AccessibleLabel: ="Folders"
+        BorderColor: =App.Theme.Colors.Darker40
+        BorderThickness: =2
+        Color: =RGBA(0, 0, 0, 1)
+        Default: =DataTableProductivity.Selected.Folders
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        FocusedBorderThickness: =4
+        Font: =Font.'Courier New'
+        Format: =TextFormat.Number
+        HoverBorderColor: =App.Theme.Colors.Darker40
+        HoverColor: =RGBA(0, 0, 0, 1)
+        HoverFill: =App.Theme.Colors.Lighter70
+        Reset: =true
+        Size: =13
+        X: =229
+        Y: =248
+        ZIndex: =23
+

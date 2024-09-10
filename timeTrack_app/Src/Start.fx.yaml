@@ -1,0 +1,459 @@
+Start As screen:
+    BackgroundImage: =Xerox
+    Fill: =Color.White
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+    OnVisible: |-
+        =UpdateContext({progress:0});
+        UpdateContext({timer: 5})
+
+    Header2_2 As Header:
+        BasePaletteColor: =
+        DisplayMode: =DisplayMode.Edit
+        FontColor: =
+        Height: =86
+        IsLogoVisible: =true
+        IsProfilePictureVisible: =true
+        IsTitleVisible: =false
+        Logo: ='Xerox-logo'
+        LogoTooltip: =""
+        OnSelectLogo: =false
+        Title: =App.ActiveScreen.Name
+        UserEmail: =User().Email
+        UserImage: =User().Image
+        UserName: =User().FullName
+        Visible: =true
+        Width: =Parent.Width
+        X: =0
+        Y: =0
+        ZIndex: =1
+
+    ButtonCheckOut_2 As button:
+        BorderColor: =App.Theme.Colors.Primary
+        DisabledBorderColor: =RGBA(244, 244, 244, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        DisplayMode: =If(LookUp(Productivity,Status="OPEN"&&UserEmail=User().Email, true ),DisplayMode.Disabled,If(LookUp(CheckInCheckOut,InOut="IN"&&UserEmail=User().Email, true ),DisplayMode.Edit,DisplayMode.Disabled))
+        Fill: =RGBA(255, 0, 0, 1)
+        Font: =Font.'Courier New'
+        FontWeight: =FontWeight.Semibold
+        Height: =55
+        HoverBorderColor: =App.Theme.Colors.Darker10
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =App.Theme.Colors.Darker10
+        OnSelect: |
+            =UpdateContext({selectedRecord: User().Email});
+            Patch(
+                CheckInCheckOut,
+                LookUp(
+                    CheckInCheckOut,
+                    UserEmail = selectedRecord && InOut = "IN"
+                ),
+                {
+                    CheckOut: Now(),
+                    CheckOutTime: Hour(Now()) & ":" & Minute(Now()),
+                    Time: DateDiff(LookUp(CheckInCheckOut, UserEmail = selectedRecord && InOut = "IN",CheckIn),Now(),TimeUnit.Minutes)/60 ,
+                    InOut: "OUT"
+                }
+            );
+            Notify(
+                "Clock Out successfully, have a good rest",
+                NotificationType.Success
+            )
+        PressedBorderColor: =App.Theme.Colors.Darker40
+        PressedColor: =Self.Color
+        PressedFill: =App.Theme.Colors.Darker40
+        Size: =30
+        Text: ="CLOCK OUT"
+        Width: =243
+        X: =900
+        Y: =15
+        ZIndex: =2
+
+    ButtonCheckIn_2 As button:
+        BorderColor: =App.Theme.Colors.Primary
+        DisabledBorderColor: =RGBA(244, 244, 244, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        DisplayMode: =If(LookUp(CheckInCheckOut,InOut="IN"&&UserEmail=User().Email, true ),DisplayMode.Disabled,DisplayMode.Edit)
+        Fill: =RGBA(52, 152, 47, 1)
+        Font: =Font.'Courier New'
+        FontWeight: =FontWeight.Semibold
+        Height: =55
+        HoverBorderColor: =App.Theme.Colors.Darker10
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =App.Theme.Colors.Darker10
+        OnSelect: |+
+            =Patch(
+                CheckInCheckOut,
+                Defaults(CheckInCheckOut),
+                {
+                    InOut: "IN",
+                    Date: Today(),
+                    CheckIn: Now(),
+                    UserId: User().FullName,
+                    UserEmail: User().Email,
+                    CheckInTime: Hour(Now()) & ":" & Minute(Now())
+                }
+            );
+            UpdateContext({varCheckIn:true,varStartTimerIn:false});
+            UpdateContext({varStartTimerIn: true})
+            
+            
+            
+        PressedBorderColor: =App.Theme.Colors.Darker40
+        PressedColor: =Self.Color
+        PressedFill: =App.Theme.Colors.Darker40
+        Size: =30
+        Text: ="CLOCK IN"
+        Width: =278
+        X: =447
+        Y: =15
+        ZIndex: =3
+
+    LabelSTime_2 As label:
+        Align: =Align.Center
+        BorderColor: =App.Theme.Colors.Darker40
+        BorderThickness: =1
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisplayMode: =DisplayMode.View
+        Fill: =RGBA(241, 244, 249, 1)
+        FontWeight: =FontWeight.Semibold
+        Height: =37
+        Size: =13
+        Text: =LookUp(CheckInCheckOut,UserEmail = User().Email && InOut = "IN",CheckInTime)
+        Width: =108
+        X: =725
+        Y: =24
+        ZIndex: =4
+
+    Button8_2 As button:
+        BorderColor: =App.Theme.Colors.Primary
+        DisabledBorderColor: =RGBA(244, 244, 244, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        DisplayMode: |+
+            =If(
+                LookUp(
+                    Users,
+                    UserEmail = User().Email,
+                    Profile
+                ) = "Admin",
+                DisplayMode.Edit,
+                DisplayMode.Disabled
+            )
+            
+        Fill: =App.Theme.Colors.Primary
+        Font: =Font.'Courier New'
+        FontWeight: =FontWeight.Semibold
+        Height: =44
+        HoverBorderColor: =App.Theme.Colors.Darker10
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =App.Theme.Colors.Darker10
+        OnSelect: =Navigate(Admin,ScreenTransition.Cover)
+        PressedBorderColor: =App.Theme.Colors.Darker40
+        PressedColor: =Self.Color
+        PressedFill: =App.Theme.Colors.Darker40
+        Size: =15
+        Text: ="Admin"
+        Width: =193
+        X: =79
+        Y: =636
+        ZIndex: =5
+
+    ButtonCanvas1 As Button:
+        BasePaletteColor: =
+        BorderColor: =
+        DisplayMode: =DisplayMode.Edit
+        FontColor: =
+        Height: =32
+        OnSelect: |-
+            =UpdateContext({varCheckIn:!varCheckIn})
+        Visible: =false
+        Width: =96
+        X: =0
+        Y: =0
+        ZIndex: =6
+
+    ButtonSkip As Button:
+        AccessibleLabel: ="Skip"
+        BasePaletteColor: =
+        BorderColor: =
+        BorderStyle: =""
+        DisplayMode: |-
+            =If(
+                LookUp(
+                    CheckInCheckOut,
+                    UserEmail = User().Email && InOut = "IN",
+                    true
+                ),
+                DisplayMode.Edit,
+                DisplayMode.Disabled
+            )
+        FontColor: =
+        Height: =39
+        OnSelect: |-
+            =//Navigate(Input,ScreenTransition.Fade)
+            UpdateContext({buttonsAdmin:!buttonsAdmin})
+        Text: ="Skip"
+        Visible: =false
+        Width: =131
+        X: =1172
+        Y: =636
+        ZIndex: =7
+
+    ButtonCanvas4_2 As Button:
+        DisplayMode: =DisplayMode.Edit
+        Font: =Font.'Courier New'
+        FontSize: =18
+        FontWeight: =FontWeight.Bold
+        Height: =44
+        OnSelect: |-
+            =//Clear(colTimeSheet);ForAll(CheckInCheckOut,If(ThisRecord.UserEmail=User().Email,Collect(colTimeSheet,{Date:ThisRecord.Date,'Time In':ThisRecord.CheckInTime,'Time Out':ThisRecord.CheckOutTime,Time:ThisRecord.Time,'Break Time':0})));ForAll(Productivity,If(ThisRecord.UserEmail=User().Email&&Task="BREAK",UpdateIf(colTimeSheet,Date=ThisRecord.Date,{'Break Time':'Break Time'+ThisRecord.Time})));
+            //Patch(colTimeSheet,LookUp(colTimeSheet,Date = ThisRecord.Date), {'Break Time':'Break Time' + ThisRecord.Time }))); 
+            UpdateContext({varTimeSheet: true });
+        Text: ="Time Sheet"
+        Width: =193
+        X: =79
+        Y: =556
+        ZIndex: =8
+
+    Container14_2 As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(0, 0, 0, 0.4)
+        Height: =768
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Visible: =varTimeSheet
+        Width: =1366
+        ZIndex: =9
+
+        TableTimeSheet_2 As Table.pcfdataset:
+            DisplayMode: =DisplayMode.Edit
+            HeaderFontSize: =20
+            Height: =545
+            Items: =Filter(CheckInCheckOut,UserEmail = User().Email)
+            onCellValueChange: =false
+            onFilter: =false
+            onNavigate: =false
+            onRowSelect: =false
+            onSave: =false
+            OnSelect: =false
+            ShowFooter: ="no"
+            Width: =913
+            X: =224
+            Y: =92
+            ZIndex: =1
+
+            Date2_2 As PowerAppsOneGridTemplate_dataField.textualColumn:
+                FieldDisplayName: ="Date"
+                FieldName: ="Date"
+                FieldType: ="s"
+                FieldVariantName: ="textualColumn"
+                Order: =1
+                Width: =0
+                ZIndex: =37
+
+            CheckInTime1_2 As PowerAppsOneGridTemplate_dataField.textualColumn:
+                FieldDisplayName: ="Time IN"
+                FieldName: ="field_4"
+                FieldType: ="s"
+                FieldVariantName: ="textualColumn"
+                Order: =2
+                Width: =0
+                ZIndex: =38
+
+            CheckOutTime1_2 As PowerAppsOneGridTemplate_dataField.textualColumn:
+                FieldDisplayName: ="Time OUT"
+                FieldName: ="field_5"
+                FieldType: ="s"
+                FieldVariantName: ="textualColumn"
+                Order: =3
+                Width: =0
+                ZIndex: =39
+
+            Time5_2 As PowerAppsOneGridTemplate_dataField.textualColumn:
+                FieldDisplayName: ="Total Time"
+                FieldName: ="field_6"
+                FieldType: ="s"
+                FieldVariantName: ="textualColumn"
+                Order: =4
+                Width: =0
+                ZIndex: =40
+
+        ButtonCanvas6_2 As Button:
+            Appearance: ='ButtonCanvas.Appearance'.Secondary
+            BorderColor: =RGBA(13, 50, 61, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =2
+            DisplayMode: =DisplayMode.Edit
+            Font: =Font.'Courier New'
+            FontSize: =18
+            FontWeight: =FontWeight.Bold
+            Height: =39
+            Icon: ="Dismiss"
+            IconStyle: ='ButtonCanvas.IconStyle'.Filled
+            Layout: ='ButtonCanvas.Layout'.IconOnly
+            OnSelect: |-
+                =UpdateContext({varTimeSheet:false});
+                //Clear(colTimeSheet);
+            Text: ="Return"
+            Width: =41
+            X: =1096
+            Y: =92
+            ZIndex: =2
+
+    Container17 As groupContainer.manualLayoutContainer:
+        ContentLanguage: =
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(0, 0, 0, 0.22)
+        Height: =768
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Visible: =buttonsAdmin
+        Width: =1366
+        ZIndex: =10
+
+        Container18 As groupContainer.manualLayoutContainer:
+            DropShadow: =DropShadow.Semilight
+            Fill: =RGBA(255, 255, 255, 0.7)
+            Height: =298
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =679
+            X: =336
+            Y: =240
+            ZIndex: =3
+
+            ButtonAviva As Button:
+                DisplayMode: =DisplayMode.Edit
+                Font: =Font.'Courier New'
+                FontSize: =30
+                Height: =87
+                OnSelect: |-
+                    =UpdateContext({buttonsAdmin:false});
+                    Navigate(Input_Aviva,ScreenTransition.Cover)
+                Text: ="AVIVA"
+                Width: =237
+                X: =394
+                Y: =96
+                ZIndex: =1
+
+            ButtonGi As Button:
+                DisplayMode: =DisplayMode.Edit
+                Font: =Font.'Courier New'
+                FontSize: =30
+                Height: =87
+                OnSelect: |-
+                    =UpdateContext({buttonsAdmin:false});
+                    Navigate(Input,ScreenTransition.Cover)
+                Text: ="GI"
+                Width: =237
+                X: =57
+                Y: =96
+                ZIndex: =2
+
+    Container4 As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(0, 0, 0, 0.2)
+        Height: =768
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Visible: =varCheckIn
+        Width: =1366
+        ZIndex: =11
+
+        Container5 As groupContainer.manualLayoutContainer:
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =253
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =950
+            X: =192
+            Y: =168
+            ZIndex: =1
+
+            "Progress2 As 'Progress Bar'":
+                BasePaletteColor: =
+                DisplayMode: =DisplayMode.Edit
+                Height: =68
+                Max: =timer
+                Value: =progress
+                Width: =813
+                X: =76
+                Y: =48
+                ZIndex: =1
+
+            Timer2 As timer:
+                AutoPause: =false
+                BorderColor: =App.Theme.Colors.Primary
+                DisabledBorderColor: =RGBA(244, 244, 244, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Duration: =1000
+                Fill: =App.Theme.Colors.Primary
+                Font: =App.Theme.Font
+                HoverBorderColor: =App.Theme.Colors.Darker10
+                HoverColor: =RGBA(255, 255, 255, 1)
+                HoverFill: =App.Theme.Colors.Darker10
+                OnTimerEnd: |-
+                    =If(
+                        //progress = timer,
+                        LookUp(
+                            CheckInCheckOut,
+                            UserEmail = User().Email && InOut = "IN",
+                            true
+                        ),
+                        Notify(
+                            "Clock In successfully, enjoy your shift",
+                            NotificationType.Success
+                        );
+                        UpdateContext({varCheckIn: false});
+                        Switch(LookUp(Users,UserEmail = User().Email,Department),"GI",Navigate(Input,ScreenTransition.Cover),"AVIVA",Navigate(Input_Aviva,ScreenTransition.Cover),UpdateContext({buttonsAdmin:true}));
+                        UpdateContext(
+                            {
+                                progress: 0,
+                                timer: 5
+                            }
+                        ),
+                        UpdateContext({progress: progress + 1});
+                        UpdateContext({varStartTimerIn: false});
+                        Refresh(CheckInCheckOut);
+                        UpdateContext({varStartTimerIn: true})
+                    )
+                PressedBorderColor: =App.Theme.Colors.Darker40
+                PressedColor: =Self.Color
+                PressedFill: =App.Theme.Colors.Darker40
+                Start: =varStartTimerIn
+                Visible: =false
+                X: =32
+                Y: =188
+                ZIndex: =2
+
+            TextCanvas2 As Text:
+                Align: ='TextCanvas.Align'.Center
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =53
+                Size: =25
+                Text: ="Starting..."
+                VerticalAlign: ='TextCanvas.VerticalAlign'.Middle
+                Weight: ='TextCanvas.Weight'.Bold
+                Width: =142
+                X: =411
+                Y: =135
+                ZIndex: =3
+

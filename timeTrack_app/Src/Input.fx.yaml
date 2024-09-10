@@ -1,0 +1,1073 @@
+Input As screen:
+    BackgroundImage: =Xerox
+    Fill: =Color.White
+    ImagePosition: =ImagePosition.Fill
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+
+    Label1 As label:
+        BorderColor: =App.Theme.Colors.Darker40
+        BorderThickness: =1
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Fill: =RGBA(241, 244, 249, 1)
+        Font: =App.Theme.Font
+        FontWeight: =FontWeight.Semibold
+        Size: =13
+        Text: |-
+            ="TASK
+            "
+        X: =60
+        Y: =117
+        ZIndex: =1
+
+    Label1_1 As label:
+        BorderColor: =App.Theme.Colors.Darker40
+        BorderThickness: =1
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Fill: =RGBA(241, 244, 249, 1)
+        Font: =App.Theme.Font
+        FontWeight: =FontWeight.Semibold
+        Size: =13
+        Text: ="PROJECT"
+        X: =60
+        Y: =157
+        ZIndex: =2
+
+    Label1_2 As label:
+        BorderColor: =App.Theme.Colors.Darker40
+        BorderThickness: =1
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Fill: =RGBA(241, 244, 249, 1)
+        Font: =App.Theme.Font
+        FontWeight: =FontWeight.Semibold
+        Size: =13
+        Text: ="BOX ID"
+        X: =60
+        Y: =197
+        ZIndex: =3
+
+    ButtonStart As button:
+        BorderColor: =App.Theme.Colors.Primary
+        DisabledBorderColor: =RGBA(244, 244, 244, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        DisplayMode: |
+            =If(
+                LookUp(
+                    Productivity,
+                    Status = "OPEN" && UserEmail = User().Email,
+                    true
+                    ),
+                DisplayMode.Disabled,
+                Switch(
+                    ComboBoxTask.Selected.TASK,
+                    "BREAK",DisplayMode.Edit,
+                    "CALIBRATION",DisplayMode.Edit,
+                    "MEETING",DisplayMode.Edit,
+                    "ADMIN",DisplayMode.Edit,
+                    "MISCELLANEOUS",DisplayMode.Edit,
+                    "CHECKIN/CHECKOUT",DisplayMode.Edit,
+                    "TRAINING",DisplayMode.Edit,
+                    "R & D",DisplayMode.Edit,
+                    If(
+                        IsBlank(ComboBoxProject.Selected.PROJECT),
+                        DisplayMode.Disabled,
+                        If(
+                            IsBlank(ComboBoxBoxId.Selected) && IsBlank(TextInputBoxIdAlter.Value),
+                            DisplayMode.Disabled,
+                            DisplayMode.Edit
+                        )
+                    )
+                )    
+            )
+        Fill: =RGBA(56, 96, 178, 1)
+        Font: =Font.'Courier New'
+        FontWeight: =FontWeight.Semibold
+        Height: =37
+        HoverBorderColor: =App.Theme.Colors.Darker10
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =App.Theme.Colors.Darker10
+        OnSelect: |+
+            =Patch(
+                Productivity,
+                Defaults(Productivity),
+                {
+                    UserId: User().FullName,
+                    UserEmail: User(). Email,
+                    Date: Today(),
+                    StartDate: Now(),
+                    StartTime: Hour(Now()) & ":" & Minute(Now()),
+                    BoxId: If(IsBlank(ComboBoxBoxId.Selected), Upper(TextInputBoxIdAlter.Value), Upper(ComboBoxBoxId.Selected.'Box ID')),
+                    Task: ComboBoxTask.Selected.TASK,
+                    Project: ComboBoxProject.Selected.PROJECT,
+                    Status: "OPEN"
+                }
+            );
+            
+            Notify(
+                "You've started your task successfully",
+                NotificationType.Success
+            );
+            
+            
+            
+            
+        PressedBorderColor: =App.Theme.Colors.Darker40
+        PressedColor: =Self.Color
+        PressedFill: =App.Theme.Colors.Darker40
+        Size: =15
+        Text: ="START"
+        Tooltip: ="Select a Task, Project and BoxId from the list, if the BoxId is not in the list input it in the 'Missing BoxId'"
+        Width: =337
+        X: =60
+        Y: =312
+        ZIndex: =4
+
+    Label2 As label:
+        BorderColor: =App.Theme.Colors.Darker40
+        BorderThickness: =1
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Fill: =RGBA(241, 244, 249, 1)
+        FontWeight: =FontWeight.Semibold
+        Size: =13
+        Text: ="FOLDERS*"
+        X: =60
+        Y: =384
+        ZIndex: =5
+
+    Label2_1 As label:
+        BorderColor: =App.Theme.Colors.Darker40
+        BorderThickness: =1
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Fill: =RGBA(241, 244, 249, 1)
+        FontWeight: =FontWeight.Semibold
+        Size: =13
+        Text: ="IMAGES*"
+        X: =60
+        Y: =424
+        ZIndex: =6
+
+    Label2_2 As label:
+        BorderColor: =App.Theme.Colors.Darker40
+        BorderThickness: =1
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Fill: =RGBA(241, 244, 249, 1)
+        FontWeight: =FontWeight.Semibold
+        Size: =13
+        Text: ="COMMENTS"
+        X: =60
+        Y: =464
+        ZIndex: =7
+
+    TextInputFolders As text:
+        AccessibleLabel: ="Folders"
+        BorderColor: =App.Theme.Colors.Darker40
+        BorderThickness: =2
+        Color: =RGBA(0, 0, 0, 1)
+        Default: =""
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        DisplayMode: |-
+            =Switch(
+            	LookUp(
+            		Productivity,
+            		Status = "OPEN" && UserEmail = User().Email,
+            		Task
+            		),
+            	"SCAN",DisplayMode.Edit,
+            	"INDEX",DisplayMode.Edit,
+            	"PREP",DisplayMode.Edit,
+            	"REASSEMBLY",DisplayMode.Edit,
+            	DisplayMode.Disabled
+            )
+        FocusedBorderThickness: =4
+        Font: =Font.'Courier New'
+        Format: =TextFormat.Number
+        HoverBorderColor: =App.Theme.Colors.Darker40
+        HoverColor: =RGBA(0, 0, 0, 1)
+        HoverFill: =App.Theme.Colors.Lighter70
+        Reset: =true
+        Size: =13
+        X: =210
+        Y: =384
+        ZIndex: =8
+
+    TextInputImages As text:
+        AccessibleLabel: ="Images"
+        BorderColor: =App.Theme.Colors.Darker40
+        BorderThickness: =2
+        Color: =RGBA(0, 0, 0, 1)
+        Default: =""
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        DisplayMode: |-
+            =Switch(
+            	LookUp(
+            		Productivity,
+            		Status = "OPEN" && UserEmail = User().Email,
+            		Task
+            		),
+            	"SCAN",DisplayMode.Edit,
+            	"QA",DisplayMode.Edit,
+            	"MICROFICHE",DisplayMode.Edit,
+            	"MICROFILM",DisplayMode.Edit,
+            	"WF",DisplayMode.Edit,
+            	"MERGING",DisplayMode.Edit,
+            	"POST-SCAN QA",DisplayMode.Edit,
+                "RE-SCAN",DisplayMode.Edit,
+            	DisplayMode.Disabled
+            )
+        FocusedBorderThickness: =4
+        Font: =Font.'Courier New'
+        Format: =TextFormat.Number
+        HoverBorderColor: =App.Theme.Colors.Darker40
+        HoverColor: =RGBA(0, 0, 0, 1)
+        HoverFill: =App.Theme.Colors.Lighter70
+        Reset: =true
+        Size: =13
+        X: =210
+        Y: =424
+        ZIndex: =9
+
+    TextInputComments As text:
+        AccessibleLabel: ="Comments"
+        BorderColor: =App.Theme.Colors.Darker40
+        BorderThickness: =2
+        Color: =RGBA(0, 0, 0, 1)
+        Default: =""
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        FocusedBorderThickness: =4
+        Font: =Font.'Courier New'
+        Height: =95
+        HoverBorderColor: =App.Theme.Colors.Darker40
+        HoverColor: =RGBA(0, 0, 0, 1)
+        HoverFill: =App.Theme.Colors.Lighter70
+        MaxLength: =255
+        Mode: =TextMode.MultiLine
+        Reset: =true
+        Size: =13
+        X: =210
+        Y: =464
+        ZIndex: =10
+
+    ButtonEnd As button:
+        BorderColor: =App.Theme.Colors.Primary
+        DisabledBorderColor: =RGBA(244, 244, 244, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        DisplayMode: |-
+            =Switch(
+            	LookUp(
+            		Productivity,
+            		Status = "OPEN" && UserEmail = User().Email,
+            		Task
+            		),
+            	"BREAK",DisplayMode.Edit,
+            	"CALIBRATION",DisplayMode.Edit,
+            	"MEETING",DisplayMode.Edit,
+            	"ADMIN",DisplayMode.Edit,
+            	"MISCELLANEOUS",DisplayMode.Edit,
+                "CHECKIN/CHECKOUT",DisplayMode.Edit,
+                "R & D",DisplayMode.Edit,
+                "TRAINING",DisplayMode.Edit,
+            	"SCAN",If(
+                    TextInputImages.Text = "" || TextInputFolders.Text = "",
+                    DisplayMode.Disabled,
+                    DisplayMode.Edit
+                ),
+            	If(
+                        TextInputImages.Text = "" && TextInputFolders.Text = "",
+                        DisplayMode.Disabled,
+                        DisplayMode.Edit
+            	)
+            )
+        Fill: =RGBA(56, 96, 178, 1)
+        Font: =Font.'Courier New'
+        FontWeight: =FontWeight.Semibold
+        Height: =41
+        HoverBorderColor: =App.Theme.Colors.Darker10
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =App.Theme.Colors.Darker10
+        OnSelect: |
+            =UpdateContext({selectedRecord: User().Email});
+            Patch(
+                Productivity,
+                LookUp(
+                    Productivity,
+                    UserEmail = selectedRecord && Status = "OPEN"
+                ),
+                {
+                    EndDate: Now(),
+                    EndTime: Hour(Now()) & ":" & Minute(Now()),
+                    Time: DateDiff(LookUp(Productivity,UserEmail=selectedRecord && Status = "OPEN",StartDate),Now(),TimeUnit.Minutes)/60,
+                    Folders: Value(TextInputFolders.Text),
+                    Images: Value(TextInputImages.Text),
+                    Comments: TextInputComments.Text,
+                    Status: "CLOSE"
+                }
+            );
+            Reset(TextInputFolders);
+            Reset(TextInputImages);
+            Reset(TextInputComments);
+            Reset(TextInputBoxIdAlter);
+            Reset(ComboBoxProject);
+            Reset(ComboBoxBoxId);
+            If(
+                ComboBoxTask.Selected.TASK = "BREAK",
+                Reset(ComboBoxTask)
+            );
+            Notify(
+                "You've closed your task successfully",
+                NotificationType.Success
+            )
+        PressedBorderColor: =App.Theme.Colors.Darker40
+        PressedColor: =Self.Color
+        PressedFill: =App.Theme.Colors.Darker40
+        Size: =15
+        Text: ="END"
+        Width: =470
+        X: =60
+        Y: =593
+        ZIndex: =11
+
+    ButtonDailyImput As button:
+        BorderColor: =App.Theme.Colors.Primary
+        DisabledBorderColor: =RGBA(244, 244, 244, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Fill: =RGBA(56, 96, 178, 1)
+        Font: =Font.'Courier New'
+        FontWeight: =FontWeight.Semibold
+        Height: =44
+        HoverBorderColor: =App.Theme.Colors.Darker10
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =App.Theme.Colors.Darker10
+        OnSelect: |+
+            =Navigate('View/Edit',ScreenTransition.Cover);
+            
+        PressedBorderColor: =App.Theme.Colors.Darker40
+        PressedColor: =Self.Color
+        PressedFill: =App.Theme.Colors.Darker40
+        Size: =15
+        Text: ="View/Edit Daily Input"
+        Width: =280
+        X: =1024
+        Y: =673
+        ZIndex: =12
+
+    Button1 As button:
+        BorderColor: =App.Theme.Colors.Primary
+        DisabledBorderColor: =RGBA(244, 244, 244, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        DisplayMode: |-
+            =If(
+                LookUp(
+                    Productivity,
+                    Status = "OPEN" && UserEmail = User().Email && Task = "R & D",
+                    true
+                    ),
+                DisplayMode.Edit,
+                DisplayMode.Disabled
+            )
+        Fill: =App.Theme.Colors.Primary
+        Font: =Font.'Courier New'
+        FontWeight: =FontWeight.Semibold
+        Height: =44
+        HoverBorderColor: =App.Theme.Colors.Darker10
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =App.Theme.Colors.Darker10
+        OnSelect: |-
+            =UpdateContext({varRD: true})
+        PressedBorderColor: =App.Theme.Colors.Darker40
+        PressedColor: =Self.Color
+        PressedFill: =App.Theme.Colors.Darker40
+        Size: =15
+        Text: ="R & D"
+        Width: =193
+        X: =337
+        Y: =673
+        ZIndex: =13
+
+    Button8_1 As button:
+        BorderColor: =App.Theme.Colors.Primary
+        DisabledBorderColor: =RGBA(244, 244, 244, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        DisplayMode: |+
+            =If(
+                LookUp(
+                    Users,
+                    UserEmail = User().Email,
+                    Profile
+                ) = "Admin",
+                DisplayMode.Edit,
+                DisplayMode.Disabled
+            )
+            
+        Fill: =App.Theme.Colors.Primary
+        Font: =Font.'Courier New'
+        FontWeight: =FontWeight.Semibold
+        Height: =44
+        HoverBorderColor: =App.Theme.Colors.Darker10
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =App.Theme.Colors.Darker10
+        OnSelect: =Navigate(Admin,ScreenTransition.Cover)
+        PressedBorderColor: =App.Theme.Colors.Darker40
+        PressedColor: =Self.Color
+        PressedFill: =App.Theme.Colors.Darker40
+        Size: =15
+        Text: ="Admin"
+        Width: =193
+        X: =60
+        Y: =673
+        ZIndex: =14
+
+    LabelSTime As label:
+        Align: =Align.Center
+        BorderColor: =App.Theme.Colors.Darker40
+        BorderThickness: =1
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisplayMode: =DisplayMode.View
+        Fill: =RGBA(241, 244, 249, 1)
+        FontWeight: =FontWeight.Semibold
+        Height: =37
+        Size: =13
+        Text: =LookUp(Productivity,UserEmail = User().Email && Status = "OPEN",StartTime)
+        Width: =133
+        X: =397
+        Y: =312
+        ZIndex: =15
+
+    Label1_6 As label:
+        BorderColor: =App.Theme.Colors.Darker40
+        BorderThickness: =1
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Fill: =RGBA(241, 244, 249, 1)
+        Font: =App.Theme.Font
+        FontWeight: =FontWeight.Semibold
+        Size: =13
+        Text: ="MISSING BOX ID"
+        X: =60
+        Y: =237
+        ZIndex: =16
+
+    Header2 As Header:
+        BasePaletteColor: =
+        DisplayMode: =DisplayMode.Edit
+        FontColor: =
+        Height: =86
+        IsLogoVisible: =true
+        IsProfilePictureVisible: =true
+        IsTitleVisible: =false
+        Logo: ='Xerox-logo'
+        LogoTooltip: =""
+        OnSelectLogo: =false
+        Title: =App.ActiveScreen.Name
+        UserEmail: =User().Email
+        UserImage: =User().Image
+        UserName: =User().FullName
+        Visible: =true
+        Width: =Parent.Width
+        X: =0
+        Y: =0
+        ZIndex: =17
+
+    ButtonCheckOut_1 As button:
+        BorderColor: =App.Theme.Colors.Primary
+        DisabledBorderColor: =RGBA(244, 244, 244, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        DisplayMode: |-
+            =If(
+                LookUp(
+                    Productivity,
+                    Status = "OPEN" && UserEmail = User().Email,
+                    true
+                ),
+                DisplayMode.Disabled,
+                If(
+                    LookUp(
+                        CheckInCheckOut,
+                        InOut = "IN" && UserEmail = User().Email,
+                        true
+                    ),
+                    DisplayMode.Edit,
+                    DisplayMode.Disabled
+                )
+            )
+        Fill: =RGBA(255, 0, 0, 1)
+        Font: =Font.'Courier New'
+        FontWeight: =FontWeight.Semibold
+        Height: =55
+        HoverBorderColor: =App.Theme.Colors.Darker10
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =App.Theme.Colors.Darker10
+        OnSelect: |
+            =UpdateContext({selectedRecord: User().Email});
+            Patch(
+                CheckInCheckOut,
+                LookUp(
+                    CheckInCheckOut,
+                    UserEmail = selectedRecord && InOut = "IN"
+                ),
+                {
+                    CheckOut: Now(),
+                    CheckOutTime: Hour(Now()) & ":" & Minute(Now()),
+                    Time: DateDiff(LookUp(CheckInCheckOut, UserEmail = selectedRecord && InOut = "IN",CheckIn),Now(),TimeUnit.Minutes)/60 ,
+                    InOut: "OUT"
+                }
+            );
+            Notify(
+                "Clock Out successfully, have a good rest",
+                NotificationType.Success
+            );
+            Navigate(Start,ScreenTransition.UnCoverRight)
+        PressedBorderColor: =App.Theme.Colors.Darker40
+        PressedColor: =Self.Color
+        PressedFill: =App.Theme.Colors.Darker40
+        Size: =30
+        Text: ="CLOCK OUT"
+        Width: =243
+        X: =900
+        Y: =15
+        ZIndex: =18
+
+    ButtonCheckIn_1 As button:
+        BorderColor: =App.Theme.Colors.Primary
+        DisabledBorderColor: =RGBA(244, 244, 244, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        DisplayMode: |
+            =If(
+                LookUp(
+                    CheckInCheckOut,
+                    InOut = "IN" && UserEmail = User().Email,
+                    true
+                ),
+                DisplayMode.Disabled,
+                DisplayMode.Edit
+            )
+        Fill: =RGBA(52, 152, 47, 1)
+        Font: =Font.'Courier New'
+        FontWeight: =FontWeight.Semibold
+        Height: =55
+        HoverBorderColor: =App.Theme.Colors.Darker10
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =App.Theme.Colors.Darker10
+        OnSelect: |+
+            =Patch(
+                CheckInCheckOut,
+                Defaults(CheckInCheckOut),
+                {
+                    InOut: "IN",
+                    CheckIn: Now(),
+                    UserId: User().FullName,
+                    UserEmail: User().Email,
+                    CheckInTime: Hour(Now()) & ":" & Minute(Now())
+                }
+            );
+            Notify(
+                "Clock In successfully, enjoy your shift",
+                NotificationType.Success
+            );
+            
+        PressedBorderColor: =App.Theme.Colors.Darker40
+        PressedColor: =Self.Color
+        PressedFill: =App.Theme.Colors.Darker40
+        Size: =30
+        Text: ="CLOCK IN"
+        Width: =278
+        X: =447
+        Y: =15
+        ZIndex: =19
+
+    LabelSTime_1 As label:
+        Align: =Align.Center
+        BorderColor: =App.Theme.Colors.Darker40
+        BorderThickness: =1
+        Color: =RGBA(0, 0, 0, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisplayMode: =DisplayMode.View
+        Fill: =RGBA(241, 244, 249, 1)
+        FontWeight: =FontWeight.Semibold
+        Height: =37
+        Size: =13
+        Text: =LookUp(CheckInCheckOut,UserEmail = User().Email && InOut = "IN",CheckInTime)
+        Width: =108
+        X: =725
+        Y: =24
+        ZIndex: =20
+
+    ButtonCanvas5 As Button:
+        BasePaletteColor: =
+        BorderColor: =
+        DisplayMode: =DisplayMode.Edit
+        FontColor: =
+        Height: =32
+        OnSelect: |-
+            =UpdateContext({varRD : !varRD})
+        Visible: =false
+        Width: =96
+        X: =0
+        Y: =0
+        ZIndex: =21
+
+    DataTableProductivity_1 As Table.pcfdataset:
+        BasePaletteColor: =
+        DisplayMode: =DisplayMode.Edit
+        HeaderFontColor: =
+        HeaderFontSize: =20
+        HeaderFontWeight: =""
+        Height: =517
+        Items: =Filter(Productivity,UserEmail = User().Email , Date = Today())
+        onCellValueChange: =false
+        onFilter: =false
+        onNavigate: =false
+        onRowSelect: =false
+        onSave: =false
+        OnSelect: =false
+        ReflowBehavior: ='PowerAppsOneGrid.ReflowBehavior'.Reflow
+        ShowFooter: ="NO"
+        Width: =775
+        X: =566
+        Y: =117
+        ZIndex: =22
+
+        Task2 As PowerAppsOneGridTemplate_dataField.textualColumn:
+            FieldDisplayName: ="Task"
+            FieldName: ="field_8"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =9
+            Width: =0
+            ZIndex: =24
+
+        Project2 As PowerAppsOneGridTemplate_dataField.textualColumn:
+            FieldDisplayName: ="Project"
+            FieldName: ="field_9"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =10
+            Width: =0
+            ZIndex: =25
+
+        BoxId1 As PowerAppsOneGridTemplate_dataField.textualColumn:
+            FieldDisplayName: ="BoxId"
+            FieldName: ="field_10"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =11
+            Width: =0
+            ZIndex: =26
+
+        Folders2 As PowerAppsOneGridTemplate_dataField.textualColumn:
+            FieldDisplayName: ="Folders"
+            FieldName: ="field_11"
+            FieldType: ="n"
+            FieldVariantName: ="textualColumn"
+            Order: =12
+            Width: =0
+            ZIndex: =27
+
+        Images2 As PowerAppsOneGridTemplate_dataField.textualColumn:
+            FieldDisplayName: ="Images"
+            FieldName: ="field_12"
+            FieldType: ="n"
+            FieldVariantName: ="textualColumn"
+            Order: =13
+            Width: =0
+            ZIndex: =28
+
+        Status2 As PowerAppsOneGridTemplate_dataField.textualColumn:
+            FieldDisplayName: ="Status"
+            FieldName: ="field_14"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =15
+            Width: =0
+            ZIndex: =30
+
+    ComboBoxTask As Combobox.pcfdataset:
+        Appearance: ='ComboboxCanvas.Appearance'.FilledLighter
+        BasePaletteColor: =
+        BorderColor: =RGBA(12, 59, 94, 1)
+        BorderStyle: =BorderStyle.Solid
+        BorderThickness: =2
+        DisplayMode: =If(LookUp(Productivity,UserEmail = User().Email && Status = "OPEN",true),DisplayMode.View,DisplayMode.Edit)
+        Height: =39
+        Items: =Filter(Task_1,task_id > 100,task_id < 200)
+        Width: =293
+        X: =210
+        Y: =117
+        ZIndex: =23
+
+        TASK1 As PowerApps_CoreControls_ComboboxCanvasTemplate_dataField.textualColumn:
+            FieldDisplayName: ="TASK"
+            FieldName: ="Title"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =1
+            ZIndex: =31
+
+    ComboBoxProject As Combobox.pcfdataset:
+        Appearance: ='ComboboxCanvas.Appearance'.FilledLighter
+        BorderColor: =RGBA(12, 59, 94, 1)
+        BorderStyle: =BorderStyle.Solid
+        BorderThickness: =2
+        DisplayMode: |-
+            =If(
+                LookUp(
+                    Productivity,
+                    Status = "OPEN" && UserEmail = User().Email,
+                    true
+                ),
+                DisplayMode.View,
+                If(
+                    IsBlank(ComboBoxTask.Selected),
+                    DisplayMode.View,
+                    Switch(
+                        ComboBoxTask.Selected.TASK,
+            	        "BREAK",DisplayMode.View,
+                        "CALIBRATION",DisplayMode.View,
+                        "MEETING",DisplayMode.View,
+                        "ADMIN",DisplayMode.View,
+                        "MISCELLANEOUS",DisplayMode.View,
+                        "R & D",DisplayMode.View,
+                        "TRAINING",DisplayMode.View,
+                        DisplayMode.Edit
+                    )
+                )
+            )
+        Height: =41
+        IsSearchable: =true
+        Items: =Sort(Project_1,PROJECT,SortOrder.Ascending)
+        Width: =328
+        X: =210
+        Y: =156
+        ZIndex: =24
+
+        PROJECT1 As PowerApps_CoreControls_ComboboxCanvasTemplate_dataField.textualColumn:
+            FieldDisplayName: ="PROJECT"
+            FieldName: ="Title"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =1
+            ZIndex: =32
+
+        M_BoxId2 As PowerApps_CoreControls_ComboboxCanvasTemplate_dataField.textualColumn:
+            FieldDisplayName: ="M_BoxId"
+            FieldName: ="M_BoxId"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =2
+            ZIndex: =33
+
+        Attachments2 As PowerApps_CoreControls_ComboboxCanvasTemplate_dataField.textualColumn:
+            FieldDisplayName: ="Attachments"
+            FieldName: ="{Attachments}"
+            FieldType: ="r*"
+            FieldVariantName: ="textualColumn"
+            Order: =3
+            ZIndex: =34
+
+    ComboBoxBoxId As Combobox.pcfdataset:
+        Appearance: ='ComboboxCanvas.Appearance'.FilledLighter
+        BorderColor: =RGBA(12, 59, 94, 1)
+        BorderStyle: =BorderStyle.Solid
+        BorderThickness: =2
+        DisplayMode: |-
+            =If(
+                LookUp(
+                    Productivity,
+                    Status = "OPEN" && UserEmail = User().Email,
+                    true
+                ),
+                DisplayMode.View,
+                If(
+                    IsBlank(ComboBoxTask.Selected),
+                    DisplayMode.View,
+                    If(
+                        IsBlank(ComboBoxProject.Selected),
+                        DisplayMode.View,
+                        Switch(
+                            ComboBoxTask.Selected.TASK,
+            	            "BREAK",DisplayMode.View,
+                            "CALIBRATION",DisplayMode.View,
+                            "MEETING",DisplayMode.View,
+                            "ADMIN",DisplayMode.View,
+                            "MISCELLANEOUS",DisplayMode.View,
+                            "R & D",DisplayMode.View,
+                            "TRAINING",DisplayMode.View,
+                            DisplayMode.Edit
+                        )
+                    )
+                )
+            )
+        Height: =40
+        Items: =Filter(BoxesList,Project = ComboBoxProject.Selected.PROJECT,Status = "IN")
+        Width: =328
+        X: =210
+        Y: =197
+        ZIndex: =25
+
+        "'Box ID2' As PowerApps_CoreControls_ComboboxCanvasTemplate_dataField.textualColumn":
+            FieldDisplayName: ="Box ID"
+            FieldName: ="Title"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =2
+            ZIndex: =36
+
+    "TextInputBoxIdAlter As 'Text input'":
+        DisplayMode: |+
+            =If(
+                LookUp(
+                    Productivity,
+                    UserEmail = User().Email && Status = "OPEN",
+                    true),
+                    DisplayMode.View,
+                    If(
+                        IsBlank(ComboBoxTask.Selected),
+                        DisplayMode.View,
+                        If(
+                            LookUp(
+                                Task_1,
+                                TASK = ComboBoxTask.Selected.TASK && M_BoxId = "OK",
+                                true),
+                                DisplayMode.Edit,
+                                If(
+                                    IsBlank(ComboBoxProject.Selected),
+                                    DisplayMode.View,
+                                    If(
+                                        LookUp(
+                                        Project_1,
+                                        PROJECT = ComboBoxProject.Selected.PROJECT && M_BoxId = "OK",
+                                        true),
+                                        DisplayMode.Edit,
+                                        DisplayMode.View
+                                        
+                                    )
+                                )
+                        )
+                    )
+            )
+            
+            
+            
+            
+                            
+            
+        Height: =40
+        Width: =328
+        X: =210
+        Y: =237
+        ZIndex: =26
+
+    Icon2 As icon.Reset:
+        BorderColor: =App.Theme.Colors.Darker40
+        Color: =App.Theme.Colors.Darker30
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(244, 244, 244, 1)
+        Height: =40
+        Icon: =Icon.Reset
+        OnSelect: |-
+            =Reset(ComboBoxTask);
+            Reset(ComboBoxProject);
+            Reset(ComboBoxBoxId)
+        Width: =35
+        X: =503
+        Y: =117
+        ZIndex: =27
+
+    ButtonCanvas4 As Button:
+        DisplayMode: =DisplayMode.Edit
+        Font: =Font.'Courier New'
+        FontSize: =18
+        FontWeight: =FontWeight.Bold
+        Height: =44
+        OnSelect: |-
+            =//Clear(colTimeSheet);ForAll(CheckInCheckOut,If(ThisRecord.UserEmail=User().Email,Collect(colTimeSheet,{Date:ThisRecord.Date,'Time In':ThisRecord.CheckInTime,'Time Out':ThisRecord.CheckOutTime,Time:ThisRecord.Time,'Break Time':0})));
+            //ForAll(Productivity,If(ThisRecord.UserEmail=User().Email&&Task="BREAK",UpdateIf(colTimeSheet,Date=ThisRecord.Date,{'Break Time':'Break Time'+ThisRecord.Time})));
+            //Patch(colTimeSheet,LookUp(colTimeSheet,Date = ThisRecord.Date), {'Break Time':'Break Time' + ThisRecord.Time }))); 
+            
+            UpdateContext({varTimeSheet: true });
+        Text: ="Time Sheet"
+        Width: =168
+        X: =833
+        Y: =673
+        ZIndex: =28
+
+    Container14 As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(0, 0, 0, 0.4)
+        Height: =768
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Visible: =varTimeSheet
+        Width: =1366
+        ZIndex: =29
+
+        TableTimeSheet As Table.pcfdataset:
+            DisplayMode: =DisplayMode.Edit
+            HeaderFontSize: =20
+            Height: =545
+            Items: =Filter(CheckInCheckOut,UserEmail = User().Email)
+            onCellValueChange: =false
+            onFilter: =false
+            onNavigate: =false
+            onRowSelect: =false
+            onSave: =false
+            OnSelect: =false
+            ShowFooter: ="no"
+            Width: =913
+            X: =224
+            Y: =100
+            ZIndex: =1
+
+            Date2 As PowerAppsOneGridTemplate_dataField.textualColumn:
+                FieldDisplayName: ="Date"
+                FieldName: ="Date"
+                FieldType: ="s"
+                FieldVariantName: ="textualColumn"
+                Order: =1
+                Width: =0
+                ZIndex: =37
+
+            CheckInTime1 As PowerAppsOneGridTemplate_dataField.textualColumn:
+                FieldDisplayName: ="Time IN"
+                FieldName: ="field_4"
+                FieldType: ="s"
+                FieldVariantName: ="textualColumn"
+                Order: =2
+                Width: =0
+                ZIndex: =38
+
+            CheckOutTime1 As PowerAppsOneGridTemplate_dataField.textualColumn:
+                FieldDisplayName: ="Time OUT"
+                FieldName: ="field_5"
+                FieldType: ="s"
+                FieldVariantName: ="textualColumn"
+                Order: =3
+                Width: =0
+                ZIndex: =39
+
+            Time5 As PowerAppsOneGridTemplate_dataField.textualColumn:
+                FieldDisplayName: ="Total Time"
+                FieldName: ="field_6"
+                FieldType: ="s"
+                FieldVariantName: ="textualColumn"
+                Order: =4
+                Width: =0
+                ZIndex: =40
+
+        ButtonCanvas6 As Button:
+            Appearance: ='ButtonCanvas.Appearance'.Secondary
+            BorderColor: =RGBA(13, 50, 61, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =2
+            DisplayMode: =DisplayMode.Edit
+            Font: =Font.'Courier New'
+            FontSize: =18
+            FontWeight: =FontWeight.Bold
+            Height: =39
+            Icon: ="Dismiss"
+            IconStyle: ='ButtonCanvas.IconStyle'.Filled
+            Layout: ='ButtonCanvas.Layout'.IconOnly
+            OnSelect: |-
+                =UpdateContext({varTimeSheet:false});
+                //Clear(colTimeSheet);
+            Text: ="Return"
+            Width: =41
+            X: =1096
+            Y: =100
+            ZIndex: =2
+
+    Container6 As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(0, 0, 0, 0.2)
+        Height: =768
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Visible: =varRD
+        Width: =1366
+        ZIndex: =30
+
+        Container7 As groupContainer.manualLayoutContainer:
+            BorderThickness: =2
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 0.84)
+            Height: =308
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =783
+            X: =288
+            Y: =204
+            ZIndex: =1
+
+            ButtonLoad As Button:
+                BasePaletteColor: =
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Font: =Font.'Courier New'
+                FontColor: =
+                FontSize: =40
+                Height: =84
+                OnSelect: |-
+                    =Navigate(Receive,ScreenTransition.Cover);
+                    UpdateContext({varRD: false})
+                Text: ="Receive"
+                Width: =206
+                X: =112
+                Y: =56
+                ZIndex: =1
+
+            ButtonDownLoad_1 As Button:
+                BasePaletteColor: =
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Font: =Font.'Courier New'
+                FontColor: =
+                FontSize: =40
+                Height: =84
+                OnSelect: |-
+                    =Navigate(Dispatch,ScreenTransition.Cover);
+                    UpdateContext({varRD: false})
+                Text: ="Dispatch"
+                Visible: =true
+                Width: =231
+                X: =442
+                Y: =56
+                ZIndex: =2
+
+            ButtonReturn1 As Button:
+                BasePaletteColor: =
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                FontColor: =
+                Height: =32
+                OnSelect: |-
+                    =UpdateContext({varRD: false})
+                Text: ="Return"
+                Width: =96
+                X: =621
+                Y: =212
+                ZIndex: =3
+

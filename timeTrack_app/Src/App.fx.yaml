@@ -1,0 +1,22 @@
+App As appinfo:
+    BackEnabled: =true
+    OnStart: =User().FullName && " Welcome, Click in 'CLOCK IN' to start"
+    StartScreen: |-
+        =If(
+            LookUp(
+                CheckInCheckOut,
+                UserEmail = User().Email && InOut = "IN",
+                true
+                ),
+            Switch(LookUp(Users,UserEmail = User().Email,Department),"GI",Input,"AVIVA",Input_Aviva),
+            Start
+        )
+    Theme: =PowerAppsTheme
+
+    Host As hostControl.DefaultHostControlVariant:
+        OnCancel: =false
+        OnEdit: =false
+        OnNew: =false
+        OnSave: =false
+        OnView: =false
+

@@ -1,0 +1,1836 @@
+Admin As screen:
+    BackgroundImage: =Xerox
+    Fill: =Color.White
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+    OnVisible: |
+        =UpdateContext({containerAdmins:false, containerProjects:false, containerClockIn:false, containerProductivity:false});
+
+    Header2_5 As Header:
+        BasePaletteColor: =
+        DisplayMode: =DisplayMode.Edit
+        FontColor: =
+        Height: =86
+        IsLogoVisible: =true
+        IsProfilePictureVisible: =true
+        IsTitleVisible: =false
+        Logo: ='Xerox-logo'
+        LogoTooltip: =""
+        OnSelectLogo: =
+        Title: =App.ActiveScreen.Name
+        UserEmail: =User().Email
+        UserImage: =User().Image
+        UserName: =User().FullName
+        Visible: =true
+        Width: =Parent.Width
+        X: =0
+        Y: =0
+        ZIndex: =2
+
+    "'Users Button' As Button":
+        BasePaletteColor: =
+        BorderColor: =RGBA(255, 255, 255, 1)
+        BorderStyle: =BorderStyle.Solid
+        BorderThickness: =2
+        DisplayMode: =DisplayMode.Edit
+        Font: =Font.'Courier New'
+        FontColor: =RGBA(255, 255, 255, 1)
+        FontSize: =25
+        FontWeight: =FontWeight.Semibold
+        Height: =80
+        IconStyle: ='ButtonCanvas.IconStyle'.Filled
+        OnSelect: |
+            =UpdateContext({usersEdit:false,userDelete:false,usersNewUser:false});
+            UpdateContext({containerAdmins:true, containerProjects:false,containerClockIn:false,containerProductivity:false,varTimerClockIn:false,varTimerProductivity:false,containerBI:false,containerReturn:false});
+            Reset(ComboboxUsersAdmin);
+            Refresh(Users);
+        Text: ="Users"
+        Width: =243
+        X: =0
+        Y: =151
+        ZIndex: =3
+
+    Projects As Button:
+        BasePaletteColor: =
+        BorderColor: =RGBA(255, 255, 255, 1)
+        BorderStyle: =BorderStyle.Solid
+        BorderThickness: =2
+        DisplayMode: =DisplayMode.Edit
+        Font: =Font.'Courier New'
+        FontColor: =RGBA(255, 255, 255, 1)
+        FontSize: =25
+        FontWeight: =FontWeight.Semibold
+        Height: =80
+        IconStyle: ='ButtonCanvas.IconStyle'.Filled
+        OnSelect: |+
+            =Reset(ComboboxProjectAdmin);Reset(TextInputNewProject);Reset(TextInputEditProject);
+            UpdateContext({containerAddProject:false,containerDeleteProject:false,containerEditProject:false});
+            Reset(TextInputNewProject);
+            UpdateContext({containerAdmins:false, containerProjects:true,containerClockIn:false,containerProductivity:false,varTimerClockIn:false,varTimerProductivity:false,containerBI:false,containerReturn:false});
+            Refresh(Project_1);
+            
+        Text: ="Projects"
+        Width: =243
+        X: =0
+        Y: =245
+        ZIndex: =4
+
+    ClockIn As Button:
+        BasePaletteColor: =
+        BorderColor: =RGBA(255, 255, 255, 1)
+        BorderStyle: =BorderStyle.Solid
+        BorderThickness: =2
+        DisplayMode: =DisplayMode.Edit
+        Font: =Font.'Courier New'
+        FontColor: =RGBA(255, 255, 255, 1)
+        FontSize: =25
+        FontWeight: =FontWeight.Semibold
+        Height: =80
+        IconStyle: ='ButtonCanvas.IconStyle'.Filled
+        OnSelect: |-
+            =UpdateContext({containerAdmins:false, containerProjects:false, containerClockIn:true,containerProductivity:false,varTimerClockIn:true,varTimerProductivity:false,containerBI:false,containerReturn:false})
+        Text: ="Clock In"
+        Width: =243
+        X: =0
+        Y: =338
+        ZIndex: =5
+
+    Tasks As Button:
+        BasePaletteColor: =
+        BorderColor: =RGBA(255, 255, 255, 1)
+        BorderStyle: =BorderStyle.Solid
+        BorderThickness: =2
+        DisplayMode: =DisplayMode.Edit
+        Font: =Font.'Courier New'
+        FontColor: =RGBA(255, 255, 255, 1)
+        FontSize: =25
+        FontWeight: =FontWeight.Semibold
+        Height: =80
+        IconStyle: ='ButtonCanvas.IconStyle'.Filled
+        OnSelect: |-
+            =UpdateContext({containerAdmins:false, containerProjects:false, containerClockIn:false, containerProductivity:true,varTimerClockIn:false,varTimerProductivity:true,containerBI:false,containerReturn:false});
+            Reset(ComboboxUsers)
+        Text: ="Productivity"
+        Width: =243
+        X: =0
+        Y: =432
+        ZIndex: =6
+
+    Navigate As Button:
+        BasePaletteColor: =
+        BorderColor: =RGBA(255, 255, 255, 1)
+        BorderStyle: =BorderStyle.Solid
+        BorderThickness: =2
+        DisplayMode: =DisplayMode.Edit
+        Font: =Font.'Courier New'
+        FontColor: =RGBA(255, 255, 255, 1)
+        FontSize: =25
+        FontWeight: =FontWeight.Semibold
+        Height: =80
+        IconStyle: ='ButtonCanvas.IconStyle'.Filled
+        OnSelect: |
+            =UpdateContext({containerAdmins:false, containerProjects:false, containerClockIn:false, containerProductivity:false,varTimerClockIn:false,varTimerProductivity:false,containerBI:false,containerReturn:true});
+        Text: ="Navigate"
+        Width: =243
+        X: =0
+        Y: =623
+        ZIndex: =7
+
+    Container8 As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(0, 0, 0, 0.2)
+        Height: =682
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Visible: |-
+            =
+            containerAdmins
+        Width: =1123
+        X: =243
+        Y: =86
+        ZIndex: =8
+
+        ComboboxUsersAdmin As Combobox.pcfdataset:
+            BorderColor: =RGBA(9, 33, 98, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =2
+            DisplayMode: =DisplayMode.Edit
+            Height: =39
+            Items: =Filter(Users,Status = "Active")
+            Width: =320
+            X: =28
+            Y: =14
+            ZIndex: =16
+
+            UserId4 As PowerApps_CoreControls_ComboboxCanvasTemplate_dataField.textualColumn:
+                FieldDisplayName: ="UserId"
+                FieldName: ="Title"
+                FieldType: ="s"
+                FieldVariantName: ="textualColumn"
+                Order: =1
+                ZIndex: =27
+
+        TableUsers As Table.pcfdataset:
+            DisplayMode: =DisplayMode.Edit
+            HeaderFontSize: =20
+            Height: =581
+            Items: =If(IsBlank(ComboboxUsersAdmin.Selected.UserId),Filter(Users,Status = "Active"),Filter(Users,ComboboxUsersAdmin.Selected.UserId = UserId))
+            onCellValueChange: =false
+            onFilter: =false
+            onNavigate: =false
+            onRowSelect: =false
+            onSave: =false
+            OnSelect: =false
+            Width: =1014
+            X: =28
+            Y: =68
+            ZIndex: =17
+
+            UserId5 As PowerAppsOneGridTemplate_dataField.textualColumn:
+                FieldDisplayName: ="UserId"
+                FieldName: ="Title"
+                FieldType: ="s"
+                FieldVariantName: ="textualColumn"
+                Order: =1
+                Width: =0
+                ZIndex: =28
+
+            UserEmail1 As PowerAppsOneGridTemplate_dataField.textualColumn:
+                FieldDisplayName: ="UserEmail"
+                FieldName: ="field_1"
+                FieldType: ="s"
+                FieldVariantName: ="textualColumn"
+                Order: =2
+                Width: =0
+                ZIndex: =29
+
+            Status3 As PowerAppsOneGridTemplate_dataField.textualColumn:
+                FieldDisplayName: ="Status"
+                FieldName: ="field_2"
+                FieldType: ="s"
+                FieldVariantName: ="textualColumn"
+                Order: =3
+                Width: =0
+                ZIndex: =30
+
+            Profile1 As PowerAppsOneGridTemplate_dataField.textualColumn:
+                FieldDisplayName: ="Profile"
+                FieldName: ="field_3"
+                FieldType: ="s"
+                FieldVariantName: ="textualColumn"
+                Order: =4
+                Width: =0
+                ZIndex: =31
+
+            Department1 As PowerAppsOneGridTemplate_dataField.textualColumn:
+                FieldDisplayName: ="Department"
+                FieldName: ="Department"
+                FieldType: ="s"
+                FieldVariantName: ="textualColumn"
+                Order: =5
+                Width: =0
+                ZIndex: =32
+
+            caNumber1 As PowerAppsOneGridTemplate_dataField.textualColumn:
+                FieldDisplayName: ="caNumber"
+                FieldName: ="caNumber"
+                FieldType: ="s"
+                FieldVariantName: ="textualColumn"
+                Order: =6
+                Width: =0
+                ZIndex: =33
+
+        ButtonNewUser As Button:
+            AccessibleLabel: ="Add new user"
+            BasePaletteColor: =RGBA(5, 102, 178, 1)
+            BorderColor: =RGBA(255, 255, 255, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =2
+            DisplayMode: =DisplayMode.Edit
+            FontSize: =25
+            FontWeight: =FontWeight.Bold
+            Height: =45
+            Icon: ="Add"
+            IconStyle: ='ButtonCanvas.IconStyle'.Filled
+            Layout: ='ButtonCanvas.Layout'.IconOnly
+            OnSelect: |-
+                =UpdateContext({usersEdit:false,userDelete:false,usersNewUser:true});
+            Text: =
+            Width: =43
+            X: =1042
+            Y: =68
+            ZIndex: =19
+
+        ButtonEditUser As Button:
+            AccessibleLabel: ="Edit"
+            BasePaletteColor: =RGBA(5, 102, 178, 1)
+            BorderColor: =RGBA(255, 255, 255, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =2
+            DisplayMode: =DisplayMode.Edit
+            FontSize: =25
+            FontWeight: =FontWeight.Bold
+            Height: =45
+            Icon: ="Edit"
+            IconStyle: ='ButtonCanvas.IconStyle'.Filled
+            Layout: ='ButtonCanvas.Layout'.IconOnly
+            OnSelect: |-
+                =UpdateContext({usersEdit:true,userDelete:false,usersNewUser:false});
+            Text: =
+            Width: =43
+            X: =1042
+            Y: =113
+            ZIndex: =20
+
+        ButtonInactiveUser As Button:
+            AccessibleLabel: ="Deactivate"
+            BasePaletteColor: =RGBA(5, 102, 178, 1)
+            BorderColor: =RGBA(255, 255, 255, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =2
+            DisplayMode: =DisplayMode.Edit
+            FontSize: =25
+            FontWeight: =FontWeight.Bold
+            Height: =45
+            Icon: ="Delete"
+            IconStyle: ='ButtonCanvas.IconStyle'.Filled
+            Layout: ='ButtonCanvas.Layout'.IconOnly
+            OnSelect: |-
+                =UpdateContext({usersEdit:false,userDelete:true,usersNewUser:false});
+            Text: =
+            Width: =43
+            X: =1042
+            Y: =158
+            ZIndex: =21
+
+        ButtonCanvas8_1 As Button:
+            BasePaletteColor: =
+            BorderColor: =RGBA(255, 255, 255, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =2
+            DisplayMode: =DisplayMode.Edit
+            Height: =39
+            Icon: ="ArrowClockwise"
+            Layout: ='ButtonCanvas.Layout'.IconOnly
+            OnSelect: |-
+                =Reset(ComboboxUsersAdmin);
+                UpdateContext({usersEdit:false,userDelete:false,usersNewUser:false});
+            Width: =43
+            X: =348
+            Y: =14
+            ZIndex: =22
+
+        Container24 As groupContainer.manualLayoutContainer:
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(0, 0, 0, 0.2)
+            Height: =581
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Visible: =usersNewUser
+            Width: =1014
+            X: =28
+            Y: =68
+            ZIndex: =23
+
+            Container15 As groupContainer.manualLayoutContainer:
+                DropShadow: =DropShadow.ExtraBold
+                Fill: =RGBA(0, 0, 0, 0.5)
+                Height: =366
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                Width: =518
+                X: =496
+                ZIndex: =1
+
+                "TextInputUsersName As 'Text input'":
+                    Appearance: ='TextInputCanvas.Appearance'.FilledDarker
+                    BasePaletteColor: =
+                    BorderColor: =RGBA(9, 33, 98, 1)
+                    BorderStyle: =BorderStyle.Solid
+                    BorderThickness: =1
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =36
+                    Value: =
+                    Visible: =true
+                    Width: =320
+                    X: =164
+                    Y: =100
+                    ZIndex: =2
+
+                "TextInputUsersEmail As 'Text input'":
+                    Appearance: ='TextInputCanvas.Appearance'.FilledDarker
+                    BasePaletteColor: =
+                    BorderColor: =RGBA(9, 33, 98, 1)
+                    BorderStyle: =BorderStyle.Solid
+                    BorderThickness: =1
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =36
+                    Value: =
+                    Visible: =true
+                    Width: =320
+                    X: =164
+                    Y: =156
+                    ZIndex: =4
+
+                Label3 As label:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderThickness: =2
+                    Color: =RGBA(255, 255, 255, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Fill: =RGBA(139, 154, 159, 1)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    Height: =36
+                    Size: =13
+                    Text: ="Name"
+                    Width: =116
+                    X: =48
+                    Y: =100
+                    ZIndex: =5
+
+                Label3_1 As label:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderThickness: =2
+                    Color: =RGBA(255, 255, 255, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Fill: =RGBA(139, 154, 159, 1)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    Height: =36
+                    Size: =13
+                    Text: ="Email"
+                    Width: =116
+                    X: =48
+                    Y: =156
+                    ZIndex: =6
+
+                "TextInputCaNumber As 'Text input'":
+                    Appearance: ='TextInputCanvas.Appearance'.FilledDarker
+                    BasePaletteColor: =
+                    BorderColor: =RGBA(9, 33, 98, 1)
+                    BorderStyle: =BorderStyle.Solid
+                    BorderThickness: =1
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =36
+                    Value: =
+                    Visible: =true
+                    Width: =320
+                    X: =164
+                    Y: =44
+                    ZIndex: =11
+
+                Label3_4 As label:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderThickness: =2
+                    Color: =RGBA(255, 255, 255, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Fill: =RGBA(139, 154, 159, 1)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    Height: =36
+                    Size: =13
+                    Text: ="Xerox ID"
+                    Width: =116
+                    X: =48
+                    Y: =44
+                    ZIndex: =12
+
+                ButtonAddUser As Button:
+                    DisplayMode: =If(IsBlank(TextInputCaNumber.Value),DisplayMode.Disabled,If(IsBlank(TextInputUsersName.Value),DisplayMode.Disabled,If(IsBlank(TextInputUsersEmail.Value),DisplayMode.Disabled,If(IsBlank(ComboboxDepartment.Selected.Value),DisplayMode.Disabled,DisplayMode.Edit))))
+                    Height: =31
+                    OnSelect: |
+                        =If(
+                            LookUp(
+                                Users,
+                                caNumber = TextInputCaNumber.Value,
+                                true
+                            ),
+                            Notify(
+                                "User already exist",
+                                NotificationType.Error
+                            ),
+                            Patch(
+                                Users,
+                                Defaults(Users),
+                                {
+                                    caNumber: TextInputCaNumber.Value,
+                                    UserId: TextInputUsersName.Value,
+                                    Status: "Active",
+                                    Profile: "EndUser",
+                                    UserEmail: TextInputUsersEmail.Value,
+                                    Department: ComboboxDepartment.Selected.Value
+                                }
+                            );
+                            ClearCollect(NewUser,{
+                                    caNumber: TextInputCaNumber.Value,
+                                    UserId: TextInputUsersName.Value,
+                                    Status: "Active",
+                                    Profile: "EndUser",
+                                    UserEmail: TextInputUsersEmail.Value,
+                                    Department: ComboboxDepartment.Selected.Value
+                                });
+                            Set(varJSONnewUser, JSON(NewUser));
+                            NewUserEmail.Run(varJSONnewUser);
+                            Notify(
+                                "User added successfully",
+                                NotificationType.Success
+                            );
+                            UpdateContext({usersNewUser: false});
+                            Reset(TextInputCaNumber);
+                            Reset(TextInputUsersName);
+                            Reset(TextInputUsersEmail);
+                            Reset(ComboboxDepartment)
+                        );
+                    Text: ="Add"
+                    Width: =96
+                    X: =120
+                    Y: =288
+                    ZIndex: =13
+
+                ButtonCancelUser As Button:
+                    BasePaletteColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    OnSelect: |-
+                        =UpdateContext({usersNewUser:false});
+                        Reset(TextInputCaNumber);
+                        Reset(TextInputUsersEmail);
+                        Reset(TextInputUsersName);
+                        Reset(ComboboxDepartment)
+                    Text: ="Cancel"
+                    Width: =96
+                    X: =291
+                    Y: =288
+                    ZIndex: =14
+
+                Label3_10 As label:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderThickness: =2
+                    Color: =RGBA(255, 255, 255, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Fill: =RGBA(139, 154, 159, 1)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    Height: =36
+                    Size: =13
+                    Text: ="Department"
+                    Width: =116
+                    X: =48
+                    Y: =212
+                    ZIndex: =16
+
+                ComboboxDepartment As Combobox.pcfdataset:
+                    BorderColor: =RGBA(12, 59, 94, 1)
+                    BorderStyle: =BorderStyle.Solid
+                    BorderThickness: =1
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =36
+                    Items: =["GI", "AVIVA","ALL"]
+                    Width: =320
+                    X: =164
+                    Y: =212
+                    ZIndex: =17
+
+        Container11 As groupContainer.manualLayoutContainer:
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(0, 0, 0, 0.2)
+            Height: =583
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Visible: =usersEdit
+            Width: =1016
+            X: =28
+            Y: =68
+            ZIndex: =24
+
+            Container15_1 As groupContainer.manualLayoutContainer:
+                DropShadow: =DropShadow.Light
+                Fill: =RGBA(0, 0, 0, 0.5)
+                Height: =427
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                Width: =518
+                X: =498
+                Y: =44
+                ZIndex: =1
+
+                "TextInputUsersName_1 As 'Text input'":
+                    Appearance: ='TextInputCanvas.Appearance'.FilledDarker
+                    BasePaletteColor: =
+                    BorderColor: =RGBA(9, 33, 98, 1)
+                    BorderStyle: =BorderStyle.Solid
+                    BorderThickness: =1
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =36
+                    Value: =LookUp(Users,caNumber = TextInputCaNumber_1.Value,UserId)
+                    Visible: =true
+                    Width: =320
+                    X: =164
+                    Y: =100
+                    ZIndex: =1
+
+                "TextInputUsersEmail_1 As 'Text input'":
+                    Appearance: ='TextInputCanvas.Appearance'.FilledDarker
+                    BasePaletteColor: =
+                    BorderColor: =RGBA(9, 33, 98, 1)
+                    BorderStyle: =BorderStyle.Solid
+                    BorderThickness: =1
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =36
+                    Value: =LookUp(Users,caNumber = TextInputCaNumber_1.Value,UserEmail)
+                    Visible: =true
+                    Width: =320
+                    X: =164
+                    Y: =156
+                    ZIndex: =2
+
+                Label3_2 As label:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderThickness: =2
+                    Color: =RGBA(255, 255, 255, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Fill: =RGBA(139, 154, 159, 1)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    Height: =36
+                    Size: =13
+                    Text: ="Name"
+                    Width: =116
+                    X: =48
+                    Y: =100
+                    ZIndex: =3
+
+                Label3_3 As label:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderThickness: =2
+                    Color: =RGBA(255, 255, 255, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Fill: =RGBA(139, 154, 159, 1)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    Height: =36
+                    Size: =13
+                    Text: ="Email"
+                    Width: =116
+                    X: =48
+                    Y: =156
+                    ZIndex: =4
+
+                "TextInputCaNumber_1 As 'Text input'":
+                    Appearance: ='TextInputCanvas.Appearance'.FilledDarker
+                    BasePaletteColor: =
+                    BorderColor: =RGBA(9, 33, 98, 1)
+                    BorderStyle: =BorderStyle.Solid
+                    BorderThickness: =1
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =36
+                    Value: =If(IsBlank(ComboboxUsersAdmin.Selected.UserId),TableUsers.Selected.caNumber,LookUp(Users,ComboboxUsersAdmin.Selected.UserId = UserId,caNumber))
+                    Visible: =true
+                    Width: =275
+                    X: =164
+                    Y: =44
+                    ZIndex: =5
+
+                Label3_5 As label:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderThickness: =2
+                    Color: =RGBA(255, 255, 255, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Fill: =RGBA(139, 154, 159, 1)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    Height: =36
+                    Size: =13
+                    Text: ="Xerox ID"
+                    Width: =116
+                    X: =48
+                    Y: =44
+                    ZIndex: =6
+
+                ButtonEditUser_1 As Button:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =31
+                    OnSelect: |+
+                        =Patch(
+                            Users,
+                            LookUp(Users,caNumber = TextInputCaNumber_1.Value),
+                            {
+                                UserId: TextInputUsersName_1.Value,
+                                UserEmail: TextInputUsersEmail_1.Value,
+                                Profile:TextInputUsersProfile.Value,
+                                Department:TextInputUsersDepartment.Value
+                            }
+                        );
+                        Notify(
+                            "User edited successfully",
+                            NotificationType.Success
+                        );
+                        UpdateContext({usersEdit: false});
+                        Reset(TextInputCaNumber_1);
+                        Reset(TextInputUsersName_1);
+                        Reset(TextInputUsersEmail_1);
+                        Reset(ComboboxDepartment_1);
+                        Reset(TextInputUsersDepartment)
+                        
+                    Text: ="Edit"
+                    Width: =96
+                    X: =116
+                    Y: =348
+                    ZIndex: =7
+
+                ButtonCancelUser_1 As Button:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    OnSelect: |-
+                        =UpdateContext({usersEdit:false});
+                        Reset(TextInputCaNumber_1);
+                        Reset(TextInputUsersEmail_1);
+                        Reset(TextInputUsersName_1);
+                        Reset(ComboboxDepartment_1);
+                        Reset(ComboboxProfile);
+                        Reset(TextInputUsersDepartment)
+                    Text: ="Cancel"
+                    Width: =96
+                    X: =287
+                    Y: =348
+                    ZIndex: =8
+
+                ComboboxProfile As Combobox.pcfdataset:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =36
+                    Items: =["Admin", "EndUser"]
+                    Width: =319
+                    X: =165
+                    Y: =212
+                    ZIndex: =9
+
+                "TextInputUsersProfile As 'Text input'":
+                    Appearance: ='TextInputCanvas.Appearance'.FilledDarker
+                    BasePaletteColor: =
+                    BorderColor: =RGBA(9, 33, 98, 1)
+                    BorderStyle: =BorderStyle.Solid
+                    BorderThickness: =1
+                    DisplayMode: =DisplayMode.View
+                    Height: =36
+                    Value: =If(IsBlank(ComboboxProfile.Selected.Value),LookUp(Users,caNumber = TextInputCaNumber_1.Value,Department),ComboboxProfile.Selected.Value)
+                    Visible: =true
+                    Width: =276
+                    X: =163
+                    Y: =212
+                    ZIndex: =10
+
+                Label3_9 As label:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderThickness: =2
+                    Color: =RGBA(255, 255, 255, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Fill: =RGBA(139, 154, 159, 1)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    Height: =36
+                    Size: =13
+                    Text: ="Profile"
+                    Width: =116
+                    X: =48
+                    Y: =212
+                    ZIndex: =11
+
+                Label3_11 As label:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderThickness: =2
+                    Color: =RGBA(255, 255, 255, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Fill: =RGBA(139, 154, 159, 1)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    Height: =36
+                    Size: =13
+                    Text: ="Department"
+                    Width: =116
+                    X: =48
+                    Y: =268
+                    ZIndex: =12
+
+                ComboboxDepartment_1 As Combobox.pcfdataset:
+                    BorderColor: =RGBA(13, 50, 61, 1)
+                    BorderStyle: =BorderStyle.None
+                    BorderThickness: =1
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =36
+                    Items: =["GI", "AVIVA","ALL"]
+                    Width: =320
+                    X: =164
+                    Y: =268
+                    ZIndex: =13
+
+                "TextInputUsersDepartment As 'Text input'":
+                    Appearance: ='TextInputCanvas.Appearance'.FilledDarker
+                    BasePaletteColor: =
+                    BorderColor: =RGBA(9, 33, 98, 1)
+                    BorderStyle: =BorderStyle.Solid
+                    BorderThickness: =1
+                    DisplayMode: =DisplayMode.View
+                    Height: =36
+                    Value: =If(IsBlank(ComboboxDepartment_1.Selected.Value),LookUp(Users,caNumber = TextInputCaNumber_1.Value,Department),ComboboxDepartment_1.Selected.Value)
+                    Visible: =true
+                    Width: =275
+                    X: =164
+                    Y: =268
+                    ZIndex: =14
+
+                ButtonCanvas8_2 As Button:
+                    BasePaletteColor: =
+                    BorderColor: =RGBA(255, 255, 255, 1)
+                    BorderStyle: =BorderStyle.Solid
+                    BorderThickness: =2
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =36
+                    Icon: ="ArrowClockwise"
+                    Layout: ='ButtonCanvas.Layout'.IconOnly
+                    OnSelect: =
+                    Width: =44
+                    X: =439
+                    Y: =44
+                    ZIndex: =15
+
+        Container16 As groupContainer.manualLayoutContainer:
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(0, 0, 0, 0.2)
+            Height: =581
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Visible: =userDelete
+            Width: =1014
+            X: =28
+            Y: =68
+            ZIndex: =25
+
+            Container15_2 As groupContainer.manualLayoutContainer:
+                DropShadow: =DropShadow.Light
+                Fill: =RGBA(0, 0, 0, 0.5)
+                Height: =315
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                Width: =518
+                X: =496
+                Y: =92
+                ZIndex: =1
+
+                "TextInputUsersName_2 As 'Text input'":
+                    Appearance: ='TextInputCanvas.Appearance'.FilledDarker
+                    BasePaletteColor: =
+                    BorderColor: =RGBA(9, 33, 98, 1)
+                    BorderStyle: =BorderStyle.Solid
+                    BorderThickness: =1
+                    DisplayMode: =DisplayMode.View
+                    Height: =36
+                    Value: =LookUp(Users,caNumber = TextInputCaNumber_2.Value,UserId)
+                    Visible: =true
+                    Width: =320
+                    X: =164
+                    Y: =100
+                    ZIndex: =2
+
+                "TextInputUsersEmail_2 As 'Text input'":
+                    Appearance: ='TextInputCanvas.Appearance'.FilledDarker
+                    BasePaletteColor: =
+                    BorderColor: =RGBA(9, 33, 98, 1)
+                    BorderStyle: =BorderStyle.Solid
+                    BorderThickness: =1
+                    DisplayMode: =DisplayMode.View
+                    Height: =36
+                    Value: =LookUp(Users,caNumber = TextInputCaNumber_2.Value,UserEmail)
+                    Visible: =true
+                    Width: =320
+                    X: =164
+                    Y: =156
+                    ZIndex: =4
+
+                Label3_7 As label:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderThickness: =2
+                    Color: =RGBA(255, 255, 255, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Fill: =RGBA(139, 154, 159, 1)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    Height: =36
+                    Size: =13
+                    Text: ="Name"
+                    Width: =116
+                    X: =48
+                    Y: =100
+                    ZIndex: =5
+
+                Label3_8 As label:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderThickness: =2
+                    Color: =RGBA(255, 255, 255, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Fill: =RGBA(139, 154, 159, 1)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    Height: =36
+                    Size: =13
+                    Text: ="Email"
+                    Width: =116
+                    X: =48
+                    Y: =156
+                    ZIndex: =6
+
+                "TextInputCaNumber_2 As 'Text input'":
+                    Appearance: ='TextInputCanvas.Appearance'.FilledDarker
+                    BasePaletteColor: =
+                    BorderColor: =RGBA(9, 33, 98, 1)
+                    BorderStyle: =BorderStyle.Solid
+                    BorderThickness: =1
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =36
+                    Value: =If(IsBlank(ComboboxUsersAdmin.Selected.UserId),TableUsers.Selected.caNumber,LookUp(Users,ComboboxUsersAdmin.Selected.UserId = UserId,caNumber))
+                    Visible: =true
+                    Width: =275
+                    X: =164
+                    Y: =44
+                    ZIndex: =11
+
+                Label3_6 As label:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    BorderThickness: =2
+                    Color: =RGBA(255, 255, 255, 1)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    Fill: =RGBA(139, 154, 159, 1)
+                    Font: =App.Theme.Font
+                    FontWeight: =FontWeight.Semibold
+                    Height: =36
+                    Size: =13
+                    Text: ="Xerox ID"
+                    Width: =116
+                    X: =48
+                    Y: =44
+                    ZIndex: =12
+
+                ButtonDeleteUser As Button:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =31
+                    OnSelect: |+
+                        =Patch(
+                            Users,
+                            LookUp(Users,caNumber = TextInputCaNumber_2.Value),
+                            {
+                                Status:"Inactive"
+                            }
+                        );
+                        ClearCollect(DeleteUser,{caNumber: TextInputCaNumber_2.Value,Name: TextInputUsersName_2.Value, Email: TextInputUsersEmail_2.Value});
+                        Set(varJSONdeleteUser, JSON(DeleteUser));
+                        DeleteUser_1.Run(varJSONdeleteUser);
+                        Notify("User deleted",NotificationType.Success);
+                        UpdateContext({userDelete: false});
+                        Reset(TextInputCaNumber_2);
+                        Reset(TextInputUsersName_2);
+                        Reset(TextInputUsersEmail_2)
+                        
+                    Text: ="Deactivate"
+                    Width: =96
+                    X: =120
+                    Y: =236
+                    ZIndex: =13
+
+                ButtonCancelUser_2 As Button:
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =30
+                    OnSelect: |-
+                        =UpdateContext({userDelete:false});
+                        Reset(TextInputCaNumber_2);
+                        Reset(TextInputUsersEmail_2);
+                        Reset(TextInputUsersName_2)
+                    Text: ="Cancel"
+                    Width: =96
+                    X: =291
+                    Y: =236
+                    ZIndex: =14
+
+                ButtonCanvas8_4 As Button:
+                    BasePaletteColor: =
+                    BorderColor: =RGBA(255, 255, 255, 1)
+                    BorderStyle: =BorderStyle.Solid
+                    BorderThickness: =2
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =36
+                    Icon: ="ArrowClockwise"
+                    Layout: ='ButtonCanvas.Layout'.IconOnly
+                    OnSelect: =
+                    Width: =44
+                    X: =440
+                    Y: =44
+                    ZIndex: =15
+
+    Container9 As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(0, 0, 0, 0.2)
+        Height: =682
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Visible: =containerProjects
+        Width: =1123
+        X: =243
+        Y: =86
+        ZIndex: =9
+
+        ListBoxProject As Table.pcfdataset:
+            DisplayMode: =DisplayMode.Edit
+            EnableRangeSelection: ='PowerAppsOneGrid.EnableRangeSelection'.Disable
+            Height: =633
+            Items: =If(IsBlank(ComboboxProjectAdmin.Selected.PROJECT),Project_1,Filter(Project_1,ComboboxProjectAdmin.Selected.PROJECT = PROJECT))
+            onCellValueChange: =false
+            onFilter: =false
+            onNavigate: =false
+            onRowSelect: =false
+            onSave: =false
+            OnSelect: =false
+            Width: =304
+            X: =128
+            Y: =31
+            ZIndex: =5
+
+            PROJECT2 As PowerAppsOneGridTemplate_dataField.textualColumn:
+                FieldDisplayName: ="PROJECT"
+                FieldName: ="Title"
+                FieldType: ="s"
+                FieldVariantName: ="textualColumn"
+                Order: =1
+                Width: =0
+                ZIndex: =34
+
+            Status4 As PowerAppsOneGridTemplate_dataField.textualColumn:
+                FieldDisplayName: ="Status"
+                FieldName: ="Status"
+                FieldType: ="s"
+                FieldVariantName: ="textualColumn"
+                Order: =2
+                Width: =0
+                ZIndex: =35
+
+        ButtonNewProject As Button:
+            AccessibleLabel: ="Add"
+            BasePaletteColor: =RGBA(5, 102, 178, 1)
+            BorderColor: =RGBA(255, 255, 255, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =2
+            DisplayMode: =DisplayMode.Edit
+            FontSize: =25
+            FontWeight: =FontWeight.Bold
+            Height: =45
+            Icon: ="Add"
+            IconStyle: ='ButtonCanvas.IconStyle'.Filled
+            Layout: ='ButtonCanvas.Layout'.IconOnly
+            OnSelect: |-
+                =UpdateContext({containerAddProject:true,containerDeleteProject:false,containerEditProject:false})
+            Text: =
+            Width: =43
+            X: =432
+            Y: =70
+            ZIndex: =6
+
+        Container20 As groupContainer.manualLayoutContainer:
+            ContentLanguage: =
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(0, 0, 0, 0.25)
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Visible: =containerAddProject
+            X: =475
+            Y: =70
+            ZIndex: =7
+
+            Label6 As label:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderThickness: =2
+                Color: =RGBA(0, 0, 0, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Fill: =RGBA(214, 221, 224, 1)
+                Font: =App.Theme.Font
+                Size: =13
+                Text: ="Project Name"
+                X: =40
+                Y: =40
+                ZIndex: =1
+
+            "TextInputNewProject As 'Text input'":
+                BorderColor: =RGBA(9, 33, 98, 1)
+                BorderStyle: =BorderStyle.Solid
+                BorderThickness: =2
+                DisplayMode: =DisplayMode.Edit
+                Height: =40
+                Width: =261
+                X: =190
+                Y: =40
+                ZIndex: =2
+
+            ButtonAddProject As Button:
+                BorderColor: =RGBA(255, 255, 255, 1)
+                BorderStyle: =BorderStyle.Solid
+                BorderThickness: =2
+                DisplayMode: =If(IsBlank(TextInputNewProject.Value),DisplayMode.Disabled,DisplayMode.Edit)
+                Height: =32
+                OnSelect: |-
+                    =Patch(
+                        Project_1,
+                        Defaults(Project_1),
+                        {
+                            PROJECT: TextInputNewProject.Value,
+                            Status: "Active"
+                        }
+                    );
+                    UpdateContext({containerAddProject: false});
+                    Notify(
+                        "Project added successfully",
+                        NotificationType.Success
+                    );
+                    Refresh(Project_1);
+                    Reset(TextInputNewProject)
+                Text: ="Add"
+                Width: =96
+                X: =128
+                Y: =112
+                ZIndex: =3
+
+            ButtonCancel As Button:
+                BasePaletteColor: =
+                BorderColor: =RGBA(255, 255, 255, 1)
+                BorderStyle: =BorderStyle.Solid
+                BorderThickness: =2
+                DisplayMode: =DisplayMode.Edit
+                Height: =32
+                OnSelect: |
+                    =Reset(TextInputNewProject);
+                    UpdateContext({containerAddProject:false});
+                Text: ="Cancel"
+                Width: =96
+                X: =272
+                Y: =112
+                ZIndex: =4
+
+        ButtonDeleteProject_1 As Button:
+            AccessibleLabel: ="Deactivate"
+            BasePaletteColor: =RGBA(5, 102, 178, 1)
+            BorderColor: =RGBA(255, 255, 255, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =2
+            DisplayMode: =DisplayMode.Edit
+            FontSize: =25
+            FontWeight: =FontWeight.Bold
+            Height: =45
+            Icon: ="Delete"
+            IconStyle: ='ButtonCanvas.IconStyle'.Filled
+            Layout: ='ButtonCanvas.Layout'.IconOnly
+            OnSelect: |-
+                =UpdateContext({containerAddProject:false,containerDeleteProject:true,containerEditProject:false})
+            Text: =
+            Width: =43
+            X: =432
+            Y: =160
+            ZIndex: =8
+
+        Container21 As groupContainer.manualLayoutContainer:
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(0, 0, 0, 0.25)
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Visible: =containerDeleteProject
+            X: =475
+            Y: =160
+            ZIndex: =9
+
+            Label6_1 As label:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderThickness: =2
+                Color: =RGBA(0, 0, 0, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Fill: =RGBA(214, 221, 224, 1)
+                Font: =App.Theme.Font
+                Size: =13
+                Text: ="Project Name"
+                X: =40
+                Y: =40
+                ZIndex: =1
+
+            "TextInputDeleteProject As 'Text input'":
+                BasePaletteColor: =
+                BorderColor: =RGBA(9, 33, 98, 1)
+                BorderStyle: =BorderStyle.Solid
+                BorderThickness: =2
+                DisplayMode: =DisplayMode.View
+                Height: =40
+                Placeholder: =
+                Value: =If(IsBlank(ComboboxProjectAdmin.Selected.PROJECT),ListBoxProject.Selected.PROJECT,ComboboxProjectAdmin.Selected.PROJECT)
+                Width: =261
+                X: =190
+                Y: =40
+                ZIndex: =2
+
+            ButtonDeleteProject As Button:
+                BasePaletteColor: =
+                BorderColor: =RGBA(255, 255, 255, 1)
+                BorderStyle: =BorderStyle.Solid
+                BorderThickness: =2
+                DisplayMode: =If(LookUp(Project_1,TextInputEditProject.Value=PROJECT&&Status="Inactive", true ),DisplayMode.Disabled,If(IsBlank(TextInputEditProject.Value),DisplayMode.Disabled,DisplayMode.Edit))
+                Height: =32
+                OnSelect: |-
+                    =Patch(
+                        Project_1,
+                        LookUp(
+                            Project_1,
+                            PROJECT = TextInputDeleteProject.Value
+                        ),
+                        {Status: "Inactive"}
+                    );
+                    UpdateContext({containerDeleteProject: false});
+                    Notify(
+                        "Project delete successfully",
+                        NotificationType.Success
+                    )
+                Text: ="Deactivate"
+                Width: =96
+                X: =128
+                Y: =124
+                ZIndex: =3
+
+            ButtonCancel_1 As Button:
+                BorderColor: =RGBA(255, 255, 255, 1)
+                BorderStyle: =BorderStyle.Solid
+                BorderThickness: =2
+                DisplayMode: =DisplayMode.Edit
+                Height: =32
+                OnSelect: |
+                    =Reset(TextInputDeleteProject);
+                    UpdateContext({containerDeleteProject:false});
+                    Refresh(Project_1)
+                Text: ="Cancel"
+                Width: =96
+                X: =272
+                Y: =124
+                ZIndex: =4
+
+        ButtonEditProject As Button:
+            AccessibleLabel: ="Reactivate"
+            BasePaletteColor: =RGBA(5, 102, 178, 1)
+            BorderColor: =RGBA(255, 255, 255, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =2
+            DisplayMode: =DisplayMode.Edit
+            FontSize: =25
+            FontWeight: =FontWeight.Bold
+            Height: =45
+            Icon: ="Edit"
+            IconStyle: ='ButtonCanvas.IconStyle'.Filled
+            Layout: ='ButtonCanvas.Layout'.IconOnly
+            OnSelect: |-
+                =UpdateContext({containerAddProject:false,containerDeleteProject:false,containerEditProject:true})
+            Text: =
+            Width: =43
+            X: =432
+            Y: =115
+            ZIndex: =10
+
+        Container22 As groupContainer.manualLayoutContainer:
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(0, 0, 0, 0.25)
+            Height: =204
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Visible: =containerEditProject
+            X: =475
+            Y: =115
+            ZIndex: =11
+
+            Label6_2 As label:
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderThickness: =2
+                Color: =RGBA(0, 0, 0, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Fill: =RGBA(214, 221, 224, 1)
+                Font: =App.Theme.Font
+                Size: =13
+                Text: ="Project Name"
+                X: =40
+                Y: =40
+                ZIndex: =1
+
+            "TextInputEditProject As 'Text input'":
+                BorderColor: =RGBA(9, 33, 98, 1)
+                BorderStyle: =BorderStyle.Solid
+                BorderThickness: =2
+                DisplayMode: =DisplayMode.Edit
+                Height: =40
+                Placeholder: =
+                Value: =If(IsBlank(ComboboxProjectAdmin.Selected.PROJECT),ListBoxProject.Selected.PROJECT,ComboboxProjectAdmin.Selected.PROJECT)
+                Width: =261
+                X: =190
+                Y: =40
+                ZIndex: =2
+
+            ButtonReactivateProject As Button:
+                BasePaletteColor: =
+                BorderColor: =RGBA(255, 255, 255, 1)
+                BorderStyle: =BorderStyle.Solid
+                BorderThickness: =2
+                DisplayMode: =If(LookUp(Project_1,TextInputEditProject.Value=PROJECT&&Status="Active", true ),DisplayMode.Disabled,If(IsBlank(TextInputEditProject.Value),DisplayMode.Disabled,DisplayMode.Edit))
+                Height: =32
+                OnSelect: |-
+                    =If(
+                        LookUp(
+                            Project_1,
+                            PROJECT = TextInputEditProject.Value,
+                            true
+                        ),
+                        Patch(
+                            Project_1,
+                            LookUp(
+                                Project_1,
+                                PROJECT = TextInputEditProject.Value
+                            ),
+                            {Status: "Active"}
+                        );
+                        UpdateContext({containerEditProject: false});
+                        Notify(
+                            "Project reactivated successfully",
+                            NotificationType.Success
+                        );
+                        Refresh(Project_1),
+                        Notify(
+                            "Project selected does not exist",
+                            NotificationType.Error
+                        );
+                        Reset(TextInputNewProject)
+                    )
+                Text: ="Reactivate"
+                Width: =96
+                X: =116
+                Y: =128
+                ZIndex: =3
+
+            ButtonCancel_2 As Button:
+                BasePaletteColor: =
+                BorderColor: =RGBA(255, 255, 255, 1)
+                BorderStyle: =BorderStyle.Solid
+                BorderThickness: =2
+                DisplayMode: =DisplayMode.Edit
+                Height: =32
+                OnSelect: |
+                    =Reset(TextInputEditProject);
+                    UpdateContext({containerEditProject:false});
+                    Refresh(Project_1)
+                Text: ="Cancel"
+                Width: =96
+                X: =260
+                Y: =128
+                ZIndex: =4
+
+        ComboboxProjectAdmin As Combobox.pcfdataset:
+            Appearance: ='ComboboxCanvas.Appearance'.FilledLighter
+            BorderColor: =RGBA(9, 33, 98, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =1
+            DisplayMode: =DisplayMode.Edit
+            Height: =39
+            Items: =Project_1
+            Width: =226
+            X: =128
+            Y: =31
+            ZIndex: =12
+
+            PROJECT3 As PowerApps_CoreControls_ComboboxCanvasTemplate_dataField.textualColumn:
+                FieldDisplayName: ="PROJECT"
+                FieldName: ="Title"
+                FieldType: ="s"
+                FieldVariantName: ="textualColumn"
+                Order: =1
+                ZIndex: =36
+
+        ButtonCanvas8 As Button:
+            AccessibleLabel: ="Refresh"
+            BasePaletteColor: =
+            BorderColor: =RGBA(255, 255, 255, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =2
+            DisplayMode: =DisplayMode.Edit
+            Height: =39
+            Icon: ="ArrowClockwise"
+            Layout: ='ButtonCanvas.Layout'.IconOnly
+            OnSelect: |-
+                =Reset(ComboboxProjectAdmin);Reset(TextInputNewProject);Reset(TextInputEditProject);
+                UpdateContext({containerAddProject:false,containerDeleteProject:false,containerEditProject:false});
+                Reset(TextInputNewProject);
+            Width: =43
+            X: =432
+            Y: =31
+            ZIndex: =13
+
+    Container12 As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(0, 0, 0, 0.2)
+        Height: =682
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Visible: =containerClockIn
+        Width: =1123
+        X: =243
+        Y: =86
+        ZIndex: =10
+
+        TableClockIn As Table.pcfdataset:
+            DisplayMode: =DisplayMode.Edit
+            HeaderFontSize: =20
+            Height: =599
+            Items: =If(IsBlank(ComboboxUsersClockIn.Selected.UserId),CheckInCheckOut,Filter(CheckInCheckOut,ComboboxUsersClockIn.Selected.UserEmail = UserEmail))
+            onCellValueChange: =false
+            onFilter: =false
+            onNavigate: =false
+            onRowSelect: =false
+            onSave: =false
+            OnSelect: =false
+            ReflowBehavior: ='PowerAppsOneGrid.ReflowBehavior'.Reflow
+            ShowFooter: ="no"
+            Width: =1051
+            X: =36
+            Y: =63
+            ZIndex: =1
+
+            UserId1 As PowerAppsOneGridTemplate_dataField.textualColumn:
+                FieldDisplayName: ="Name"
+                FieldName: ="Title"
+                FieldType: ="s"
+                FieldVariantName: ="textualColumn"
+                Order: =1
+                Width: =200
+                ZIndex: =1
+
+            Time1 As PowerAppsOneGridTemplate_dataField.textualColumn:
+                FieldDisplayName: ="Time"
+                FieldName: ="field_6"
+                FieldType: ="s"
+                FieldVariantName: ="textualColumn"
+                Order: =7
+                Width: =0
+                ZIndex: =7
+
+            Date3 As PowerAppsOneGridTemplate_dataField.textualColumn:
+                FieldDisplayName: ="Date"
+                FieldName: ="Date"
+                FieldType: ="s"
+                FieldVariantName: ="textualColumn"
+                Order: =3
+                Width: =0
+                ZIndex: =37
+
+            CheckInTime2 As PowerAppsOneGridTemplate_dataField.textualColumn:
+                FieldDisplayName: ="Time IN"
+                FieldName: ="field_4"
+                FieldType: ="s"
+                FieldVariantName: ="textualColumn"
+                Order: =5
+                Width: =0
+                ZIndex: =38
+
+            CheckOutTime2 As PowerAppsOneGridTemplate_dataField.textualColumn:
+                FieldDisplayName: ="Time OUT"
+                FieldName: ="field_5"
+                FieldType: ="s"
+                FieldVariantName: ="textualColumn"
+                Order: =6
+                Width: =0
+                ZIndex: =39
+
+        Timer3 As timer:
+            BorderColor: =App.Theme.Colors.Primary
+            DisabledBorderColor: =RGBA(244, 244, 244, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Duration: =30000
+            Fill: =App.Theme.Colors.Primary
+            Font: =App.Theme.Font
+            HoverBorderColor: =App.Theme.Colors.Darker10
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =App.Theme.Colors.Darker10
+            OnTimerEnd: |-
+                =Refresh(CheckInCheckOut);
+                UpdateContext({varTimerClockIn:false});
+                UpdateContext({varTimerClockIn:true})
+            PressedBorderColor: =App.Theme.Colors.Darker40
+            PressedColor: =Self.Color
+            PressedFill: =App.Theme.Colors.Darker40
+            Start: =varTimerClockIn
+            Visible: =false
+            X: =963
+            ZIndex: =2
+
+        ButtonCanvas7 As Button:
+            BorderColor: =RGBA(255, 255, 255, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =1
+            DisplayMode: =DisplayMode.Edit
+            Height: =32
+            Icon: ="ArrowClockwise"
+            IconStyle: ='ButtonCanvas.IconStyle'.Filled
+            Layout: ='ButtonCanvas.Layout'.IconOnly
+            OnSelect: =Reset(ComboboxUsersClockIn)
+            Width: =34
+            X: =356
+            Y: =8
+            ZIndex: =4
+
+        ComboboxUsersClockIn As Combobox.pcfdataset:
+            DisplayMode: =DisplayMode.Edit
+            Height: =32
+            Items: =Filter(Users,Status = "Active")
+            Width: =320
+            X: =36
+            Y: =8
+            ZIndex: =5
+
+            UserId6 As PowerApps_CoreControls_ComboboxCanvasTemplate_dataField.textualColumn:
+                FieldDisplayName: ="UserId"
+                FieldName: ="Title"
+                FieldType: ="s"
+                FieldVariantName: ="textualColumn"
+                Order: =1
+                ZIndex: =40
+
+    Container13 As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(0, 0, 0, 0.2)
+        Height: =682
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Visible: =containerProductivity
+        Width: =1123
+        X: =243
+        Y: =86
+        ZIndex: =11
+
+        TableProductivity As Table.pcfdataset:
+            DisplayMode: =DisplayMode.Edit
+            Height: =586
+            Items: =If(IsBlank(ComboboxUsers.Selected.UserId),Filter(Productivity,Status = "OPEN"),Filter(Productivity, UserEmail = ComboboxUsers.Selected.UserEmail))
+            onCellValueChange: =false
+            onFilter: =false
+            onNavigate: =false
+            onRowSelect: =false
+            onSave: =false
+            OnSelect: =false
+            ShowFooter: ="no"
+            Width: =1065
+            X: =40
+            Y: =71
+            ZIndex: =1
+
+            UserId2 As PowerAppsOneGridTemplate_dataField.textualColumn:
+                FieldDisplayName: ="UserId"
+                FieldName: ="Title"
+                FieldType: ="s"
+                FieldVariantName: ="textualColumn"
+                Order: =1
+                Width: =200
+                ZIndex: =9
+
+            Date1 As PowerAppsOneGridTemplate_dataField.textualColumn:
+                FieldDisplayName: ="Date"
+                FieldName: ="field_2"
+                FieldType: ="D"
+                FieldVariantName: ="textualColumn"
+                Order: =3
+                ZIndex: =11
+
+            Task1 As PowerAppsOneGridTemplate_dataField.textualColumn:
+                FieldDisplayName: ="Task"
+                FieldName: ="field_8"
+                FieldType: ="s"
+                FieldVariantName: ="textualColumn"
+                Order: =6
+                Width: =0
+                ZIndex: =12
+
+            Project1 As PowerAppsOneGridTemplate_dataField.textualColumn:
+                FieldDisplayName: ="Project"
+                FieldName: ="field_9"
+                FieldType: ="s"
+                FieldVariantName: ="textualColumn"
+                Order: =7
+                Width: =0
+                ZIndex: =13
+
+            Folders1 As PowerAppsOneGridTemplate_dataField.textualColumn:
+                FieldDisplayName: ="Folders"
+                FieldName: ="field_11"
+                FieldType: ="n"
+                FieldVariantName: ="textualColumn"
+                Order: =8
+                Width: =0
+                ZIndex: =14
+
+            Images1 As PowerAppsOneGridTemplate_dataField.textualColumn:
+                FieldDisplayName: ="Images"
+                FieldName: ="field_12"
+                FieldType: ="n"
+                FieldVariantName: ="textualColumn"
+                Order: =9
+                Width: =0
+                ZIndex: =15
+
+            Status1 As PowerAppsOneGridTemplate_dataField.textualColumn:
+                FieldDisplayName: ="Status"
+                FieldName: ="field_14"
+                FieldType: ="s"
+                FieldVariantName: ="textualColumn"
+                Order: =9
+                Width: =0
+                ZIndex: =17
+
+            field_41 As PowerAppsOneGridTemplate_dataField.textualColumn:
+                FieldDisplayName: ="Start Time"
+                FieldName: ="field_4"
+                FieldType: ="s"
+                FieldVariantName: ="textualColumn"
+                Order: =4
+                Width: =75
+                ZIndex: =19
+
+            field_61 As PowerAppsOneGridTemplate_dataField.textualColumn:
+                FieldDisplayName: ="End Time"
+                FieldName: ="field_6"
+                FieldType: ="s"
+                FieldVariantName: ="textualColumn"
+                Order: =5
+                Width: =75
+                ZIndex: =20
+
+        ComboboxUsers As Combobox.pcfdataset:
+            Appearance: ='ComboboxCanvas.Appearance'.FilledLighter
+            BorderColor: =RGBA(9, 33, 98, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =2
+            DisplayMode: =DisplayMode.Edit
+            Height: =39
+            Items: =Users
+            SelectMultiple: =false
+            Width: =320
+            X: =40
+            Y: =18
+            ZIndex: =2
+
+            UserId3 As PowerApps_CoreControls_ComboboxCanvasTemplate_dataField.textualColumn:
+                FieldDisplayName: ="UserId"
+                FieldName: ="Title"
+                FieldType: ="s"
+                FieldVariantName: ="textualColumn"
+                Order: =1
+                ZIndex: =18
+
+        ButtonCanvas8_3 As Button:
+            BasePaletteColor: =
+            BorderColor: =RGBA(255, 255, 255, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =2
+            DisplayMode: =DisplayMode.Edit
+            Height: =39
+            Icon: ="ArrowClockwise"
+            Layout: ='ButtonCanvas.Layout'.IconOnly
+            OnSelect: =Reset(ComboboxUsers);
+            Width: =43
+            X: =360
+            Y: =18
+            ZIndex: =3
+
+    Timer4 As timer:
+        BorderColor: =App.Theme.Colors.Primary
+        DisabledBorderColor: =RGBA(244, 244, 244, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Duration: =30000
+        Fill: =App.Theme.Colors.Primary
+        Font: =App.Theme.Font
+        HoverBorderColor: =App.Theme.Colors.Darker10
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =App.Theme.Colors.Darker10
+        OnTimerEnd: |-
+            =Refresh(Productivity);
+            UpdateContext({varTimerProductivity:false});
+            UpdateContext({varTimerProductivity:true})
+        PressedBorderColor: =App.Theme.Colors.Darker40
+        PressedColor: =Self.Color
+        PressedFill: =App.Theme.Colors.Darker40
+        Start: =varTimerProductivity
+        Visible: =false
+        X: =1206
+        Y: =86
+        ZIndex: =12
+
+    PowerBI As Button:
+        BasePaletteColor: =
+        BorderColor: =RGBA(255, 255, 255, 1)
+        BorderStyle: =BorderStyle.Solid
+        BorderThickness: =2
+        DisplayMode: =DisplayMode.Edit
+        Font: =Font.'Courier New'
+        FontColor: =RGBA(255, 255, 255, 1)
+        FontSize: =25
+        FontWeight: =FontWeight.Semibold
+        Height: =80
+        IconStyle: ='ButtonCanvas.IconStyle'.Filled
+        OnSelect: |
+            =UpdateContext({containerAdmins:false, containerProjects:false, containerClockIn:false, containerProductivity:false,varTimerClockIn:false,varTimerProductivity:false,containerBI:true,containerReturn:false});
+        Text: ="BI reports"
+        Width: =243
+        X: =0
+        Y: =527
+        ZIndex: =13
+
+    Container10 As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(0, 0, 0, 0.2)
+        Height: =682
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Visible: =containerBI
+        Width: =1123
+        X: =243
+        Y: =86
+        ZIndex: =14
+
+        PowerBI_2 As Button:
+            BasePaletteColor: =
+            BorderColor: =RGBA(255, 255, 255, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =2
+            DisplayMode: =DisplayMode.Edit
+            Font: =Font.'Courier New'
+            FontColor: =RGBA(255, 255, 255, 1)
+            FontSize: =25
+            FontWeight: =FontWeight.Semibold
+            Height: =80
+            IconStyle: ='ButtonCanvas.IconStyle'.Filled
+            OnSelect: |+
+                =Launch("https://xerox-my.sharepoint.com/:u:/p/luis_pena/Ee6chpsqB1hOm-tnS3zjEwwB9YN2OlVCaFtJ3z7Tv21ZJw?e=3O4Y5g");
+                
+            Text: ="Comparatives"
+            Width: =243
+            X: =653
+            Y: =252
+            ZIndex: =1
+
+        PowerBI_1 As Button:
+            BasePaletteColor: =
+            BorderColor: =RGBA(255, 255, 255, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =2
+            DisplayMode: =DisplayMode.Edit
+            Font: =Font.'Courier New'
+            FontColor: =RGBA(255, 255, 255, 1)
+            FontSize: =25
+            FontWeight: =FontWeight.Semibold
+            Height: =80
+            IconStyle: ='ButtonCanvas.IconStyle'.Filled
+            OnSelect: |+
+                =Launch("https://xerox-my.sharepoint.com/:u:/p/luis_pena/EdFeBWSk3aJAqSwxMHrjFNIBeH9C1jGKPtaIfW4j71_bcg?e=NK6PsS");
+                
+            Text: ="GI DashBoard"
+            Width: =243
+            X: =276
+            Y: =252
+            ZIndex: =2
+
+    Container19 As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(0, 0, 0, 0.2)
+        Height: =682
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Visible: =containerReturn
+        Width: =1123
+        X: =243
+        Y: =86
+        ZIndex: =18
+
+        ButtonCanvas3 As Button:
+            BorderColor: =RGBA(255, 255, 255, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =2
+            DisplayMode: =DisplayMode.Edit
+            Font: =Font.'Courier New'
+            FontSize: =25
+            FontWeight: =FontWeight.Semibold
+            Height: =80
+            OnSelect: |-
+                =UpdateContext({containerReturn:false});
+                Navigate(Input_Aviva,ScreenTransition.UnCoverRight)
+            Text: ="AVIVA - Input"
+            Width: =221
+            X: =470
+            Y: =244
+            ZIndex: =1
+
+        ButtonCanvas3_1 As Button:
+            BorderColor: =RGBA(255, 255, 255, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =2
+            DisplayMode: =DisplayMode.Edit
+            Font: =Font.'Courier New'
+            FontSize: =25
+            FontWeight: =FontWeight.Semibold
+            Height: =80
+            OnSelect: |-
+                =UpdateContext({containerReturn:false});
+                Navigate(Input,ScreenTransition.UnCoverRight)
+            Text: ="GI - Input"
+            Width: =221
+            X: =156
+            Y: =244
+            ZIndex: =2
+
+        ButtonCanvas3_2 As Button:
+            BorderColor: =RGBA(255, 255, 255, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =2
+            DisplayMode: =DisplayMode.Edit
+            Font: =Font.'Courier New'
+            FontSize: =25
+            FontWeight: =FontWeight.Semibold
+            Height: =80
+            OnSelect: |-
+                =UpdateContext({containerReturn:false});
+                Navigate(Start,ScreenTransition.UnCoverRight)
+            Text: ="Main"
+            Width: =221
+            X: =777
+            Y: =244
+            ZIndex: =3
+
