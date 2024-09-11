@@ -743,7 +743,7 @@ Input As screen:
                         "CALIBRATION",DisplayMode.View,
                         "MEETING",DisplayMode.View,
                         "ADMIN",DisplayMode.View,
-                        "MISCELLANEOUS",DisplayMode.View,
+                        //"MISCELLANEOUS",DisplayMode.View,
                         "R & D",DisplayMode.View,
                         "TRAINING",DisplayMode.View,
                         DisplayMode.Edit
