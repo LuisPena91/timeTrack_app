@@ -159,7 +159,23 @@ Admin As screen:
             BorderThickness: =2
             DisplayMode: =DisplayMode.Edit
             Height: =39
-            Items: =Filter(Users,Status = "Active")
+            Items: |-
+                =If(
+                    LookUp(
+                        Users,
+                        UserEmail = User().Email,
+                        Department
+                    ) = "ALL" ,
+                    Users,
+                    Filter(
+                        Users,
+                        Department = LookUp(
+                            Users,
+                            User().Email = UserEmail,
+                            Department
+                        )
+                    )
+                )
             Width: =320
             X: =28
             Y: =14
@@ -177,7 +193,37 @@ Admin As screen:
             DisplayMode: =DisplayMode.Edit
             HeaderFontSize: =20
             Height: =581
-            Items: =Filter(Users,LookUp(Users,User().Email = UserEmail,Department) = LookUp(Users,User().Email = UserEmail,Department))
+            Items: |-
+                =If(
+                    LookUp(
+                        Users,
+                        UserEmail = User().Email,
+                        Department
+                    ) = "ALL",
+                    If(
+                        IsBlank(ComboboxUsersAdmin.Selected.UserId),
+                        Users,
+                        Filter(
+                            Users,
+                            ComboboxUsersAdmin.Selected.UserId = UserId
+                        )
+                    ),
+                    If(
+                        IsBlank(ComboboxUsersAdmin.Selected.UserId),
+                        Filter(
+                            Users,
+                            Department = LookUp(
+                                Users,
+                                User().Email = UserEmail,
+                                Department
+                            )
+                        ),
+                        Filter(
+                            Users,
+                            ComboboxUsersAdmin.Selected.UserId = UserId
+                        )
+                    )
+                )
             onCellValueChange: =false
             onFilter: =false
             onNavigate: =false
@@ -527,12 +573,13 @@ Admin As screen:
                     ZIndex: =16
 
                 ComboboxDepartment As Combobox.pcfdataset:
+                    BasePaletteColor: =
                     BorderColor: =RGBA(12, 59, 94, 1)
                     BorderStyle: =BorderStyle.Solid
                     BorderThickness: =1
                     DisplayMode: =DisplayMode.Edit
                     Height: =36
-                    Items: =["GI", "AVIVA","ALL"]
+                    Items: =["GI", "AVIVA"]
                     Width: =320
                     X: =164
                     Y: =212
@@ -681,7 +728,9 @@ Admin As screen:
                         Reset(TextInputUsersName_1);
                         Reset(TextInputUsersEmail_1);
                         Reset(ComboboxDepartment_1);
-                        Reset(TextInputUsersDepartment)
+                        Reset(TextInputUsersDepartment);
+                        Reset(ComboboxProfile);
+                        Reset(TextInputUsersProfile)
                         
                     Text: ="Edit"
                     Width: =96
@@ -699,7 +748,8 @@ Admin As screen:
                         Reset(TextInputUsersName_1);
                         Reset(ComboboxDepartment_1);
                         Reset(ComboboxProfile);
-                        Reset(TextInputUsersDepartment)
+                        Reset(TextInputUsersDepartment);
+                        Reset(TextInputUsersProfile)
                     Text: ="Cancel"
                     Width: =96
                     X: =287
@@ -768,7 +818,7 @@ Admin As screen:
                     BorderThickness: =1
                     DisplayMode: =DisplayMode.Edit
                     Height: =36
-                    Items: =["GI", "AVIVA","ALL"]
+                    Items: =["GI", "AVIVA"]
                     Width: =320
                     X: =164
                     Y: =268
@@ -1407,7 +1457,40 @@ Admin As screen:
             DisplayMode: =DisplayMode.Edit
             HeaderFontSize: =20
             Height: =599
-            Items: =If(IsBlank(ComboboxUsersClockIn.Selected.UserId),CheckInCheckOut,Filter(CheckInCheckOut,ComboboxUsersClockIn.Selected.UserEmail = UserEmail))
+            Items: |-
+                =If(
+                    LookUp(
+                        Users,
+                        UserEmail = User().Email,
+                        Department
+                    ) = "ALL",
+                    If(
+                        IsBlank(ComboboxUsersClockIn.Selected.UserId),
+                        CheckInCheckOut,
+                        Filter(
+                            CheckInCheckOut,
+                            ComboboxUsersClockIn.Selected.UserId = UserId
+                        )
+                    ),
+                    If(
+                        IsBlank(ComboboxUsersClockIn.Selected.UserId),
+                        Filter(
+                            CheckInCheckOut,
+                            UserEmail in Filter(
+                                Users,
+                                Department = LookUp(
+                                    Users,
+                                    UserEmail = User().Email,
+                                    Department
+                                )
+                            ).UserEmail
+                        ),
+                        Filter(
+                            CheckInCheckOut,
+                            ComboboxUsersClockIn.Selected.UserId = UserId
+                        )
+                    )
+                )
             onCellValueChange: =false
             onFilter: =false
             onNavigate: =false
@@ -1507,7 +1590,23 @@ Admin As screen:
         ComboboxUsersClockIn As Combobox.pcfdataset:
             DisplayMode: =DisplayMode.Edit
             Height: =32
-            Items: =Filter(Users,Status = "Active")
+            Items: |-
+                =If(
+                    LookUp(
+                        Users,
+                        UserEmail = User().Email,
+                        Department
+                    ) = "ALL" ,
+                    Users,
+                    Filter(
+                        Users,
+                        Department = LookUp(
+                            Users,
+                            User().Email = UserEmail,
+                            Department
+                        )
+                    )
+                )
             Width: =320
             X: =36
             Y: =8
@@ -1538,7 +1637,46 @@ Admin As screen:
         TableProductivity As Table.pcfdataset:
             DisplayMode: =DisplayMode.Edit
             Height: =586
-            Items: =If(IsBlank(ComboboxUsers.Selected.UserId),Filter(Productivity,Status = "OPEN"),Filter(Productivity, UserEmail = ComboboxUsers.Selected.UserEmail))
+            Items: |-
+                =If(
+                    LookUp(
+                        Users,
+                        UserEmail = User().Email,
+                        Department
+                    ) = "ALL",
+                    If(
+                        IsBlank(ComboboxUsers.Selected.UserId),
+                        Filter(
+                            Productivity,
+                            Status = "OPEN"
+                        ),
+                        Filter(
+                            Productivity,
+                            ComboboxUsers.Selected.UserEmail = UserEmail
+                        )
+                    ),
+                    If(
+                        IsBlank(ComboboxUsers.Selected.UserId),
+                        Filter(
+                            Productivity,
+                            And(
+                                UserEmail in Filter(
+                                    Users,
+                                    Department = LookUp(
+                                        Users,
+                                        UserEmail = User().Email,
+                                        Department
+                                    )
+                                ).UserEmail,
+                                Status = "OPEN"
+                            )
+                        ),
+                        Filter(
+                            Productivity,
+                            ComboboxUsers.Selected.UserEmail = UserEmail
+                        )
+                    )
+                )
             onCellValueChange: =false
             onFilter: =false
             onNavigate: =false
@@ -1638,7 +1776,23 @@ Admin As screen:
             BorderThickness: =2
             DisplayMode: =DisplayMode.Edit
             Height: =39
-            Items: =Users
+            Items: |-
+                =If(
+                    LookUp(
+                        Users,
+                        UserEmail = User().Email,
+                        Department
+                    ) = "ALL" ,
+                    Users,
+                    Filter(
+                        Users,
+                        Department = LookUp(
+                            Users,
+                            User().Email = UserEmail,
+                            Department
+                        )
+                    )
+                )
             SelectMultiple: =false
             Width: =320
             X: =40
