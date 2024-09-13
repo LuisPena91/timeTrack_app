@@ -54,7 +54,9 @@ Admin As screen:
         BorderColor: =RGBA(255, 255, 255, 1)
         BorderStyle: =BorderStyle.Solid
         BorderThickness: =2
-        DisplayMode: =DisplayMode.Edit
+        DisplayMode: |-
+            =If( Or( LookUp(Users,UserEmail = User().Email,Department) = "GI",LookUp(Users,UserEmail = User().Email,Department) ="ALL"),
+            DisplayMode.Edit,DisplayMode.Disabled)
         Font: =Font.'Courier New'
         FontColor: =RGBA(255, 255, 255, 1)
         FontSize: =25
@@ -175,7 +177,7 @@ Admin As screen:
             DisplayMode: =DisplayMode.Edit
             HeaderFontSize: =20
             Height: =581
-            Items: =If(IsBlank(ComboboxUsersAdmin.Selected.UserId),Filter(Users,Status = "Active"),Filter(Users,ComboboxUsersAdmin.Selected.UserId = UserId))
+            Items: =Filter(Users,LookUp(Users,User().Email = UserEmail,Department) = LookUp(Users,User().Email = UserEmail,Department))
             onCellValueChange: =false
             onFilter: =false
             onNavigate: =false
@@ -1695,7 +1697,16 @@ Admin As screen:
         BorderColor: =RGBA(255, 255, 255, 1)
         BorderStyle: =BorderStyle.Solid
         BorderThickness: =2
-        DisplayMode: =DisplayMode.Edit
+        DisplayMode: |-
+            =If(
+                LookUp(
+                    Users,
+                    UserEmail = User().Email,
+                    Department
+                ) = "ALL",
+                DisplayMode.Edit,
+                DisplayMode.Disabled
+            )
         Font: =Font.'Courier New'
         FontColor: =RGBA(255, 255, 255, 1)
         FontSize: =25
