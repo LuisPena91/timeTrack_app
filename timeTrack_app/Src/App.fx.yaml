@@ -7,8 +7,16 @@ App As appinfo:
                 CheckInCheckOut,
                 UserEmail = User().Email && InOut = "IN",
                 true
+            ),
+            Switch(
+                LookUp(
+                    Users,
+                    UserEmail = User().Email,
+                    Department
                 ),
-            Switch(LookUp(Users,UserEmail = User().Email,Department),"GI",Input,"AVIVA",Input_Aviva),
+                "GI",Input,
+                "AVIVA",Input_Aviva
+            ),
             Start
         )
     Theme: =PowerAppsTheme
