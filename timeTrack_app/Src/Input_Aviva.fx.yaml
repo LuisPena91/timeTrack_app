@@ -27,13 +27,18 @@ Input_Aviva As screen:
         DisabledFill: =RGBA(244, 244, 244, 1)
         DisplayMode: |-
             =If(
-                LookUp(
-                    Productivity,
-                    Status = "OPEN" && UserEmail = User().Email,
-                    true
-                    ),
+                IsBlank(ComboboxAvivaTask.Selected.TASK),
                 DisplayMode.Disabled,
-                DisplayMode.Edit)
+                If(
+                    LookUp(
+                        Productivity,
+                        Status = "OPEN" && UserEmail = User().Email,
+                        true
+                    ),
+                    DisplayMode.Disabled,
+                    DisplayMode.Edit
+                )
+            )
         Fill: =RGBA(56, 96, 178, 1)
         Font: =Font.'Courier New'
         FontWeight: =FontWeight.Semibold
