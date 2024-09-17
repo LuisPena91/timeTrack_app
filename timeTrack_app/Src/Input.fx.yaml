@@ -98,7 +98,7 @@ Input As screen:
                     UserEmail: User(). Email,
                     Date: Today(),
                     StartDate: Now(),
-                    StartTime: Hour(Now()) & ":" & Minute(Now()),
+                    StartTime: Text(Now(),"HH:mm:ss"),
                     BoxId: If(IsBlank(ComboBoxBoxId.Selected), Upper(TextInputBoxIdAlter.Value), Upper(ComboBoxBoxId.Selected.'Box ID')),
                     Task: ComboBoxTask.Selected.TASK,
                     Project: ComboBoxProject.Selected.PROJECT,
