@@ -113,7 +113,7 @@ Input_Aviva As screen:
                 {
                     EndDate: Now(),
                     EndTime: Text(Now(),"HH:mm"),
-                    Time: DateDiff(LookUp(Productivity,UserEmail=selectedRecord && Status = "OPEN",StartDate),Now(),TimeUnit.Minutes)/60,
+                    Time: Round(DateDiff(LookUp(Productivity,UserEmail=selectedRecord && Status = "OPEN",StartDate),Now(),TimeUnit.Minutes)/60,2),
                     Status: "CLOSE"
                 }
             );
@@ -230,7 +230,7 @@ Input_Aviva As screen:
                 {
                     CheckOut: Now(),
                     CheckOutTime: Text(Now(),"HH:mm"),
-                    Time: DateDiff(LookUp(CheckInCheckOut, UserEmail = selectedRecord && InOut = "IN",CheckIn),Now(),TimeUnit.Minutes)/60 ,
+                    Time: Round(DateDiff(LookUp(CheckInCheckOut, UserEmail = selectedRecord && InOut = "IN",CheckIn),Now(),TimeUnit.Minutes)/60 ,2),
                     InOut: "OUT"
                 }
             );

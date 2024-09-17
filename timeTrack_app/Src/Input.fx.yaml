@@ -308,7 +308,7 @@ Input As screen:
                 {
                     EndDate: Now(),
                     EndTime: Text(Now(),"HH:mm"),
-                    Time: DateDiff(LookUp(Productivity,UserEmail=selectedRecord && Status = "OPEN",StartDate),Now(),TimeUnit.Minutes)/60,
+                    Time: Round(DateDiff(LookUp(Productivity,UserEmail=selectedRecord && Status = "OPEN",StartDate),Now(),TimeUnit.Minutes)/60, 2),
                     Folders: Value(TextInputFolders.Text),
                     Images: Value(TextInputImages.Text),
                     Comments: TextInputComments.Text,
@@ -525,7 +525,7 @@ Input As screen:
                 {
                     CheckOut: Now(),
                     CheckOutTime: Text(Now(),"HH:mm"),
-                    Time: DateDiff(LookUp(CheckInCheckOut, UserEmail = selectedRecord && InOut = "IN",CheckIn),Now(),TimeUnit.Minutes)/60 ,
+                    Time: Round(DateDiff(LookUp(CheckInCheckOut, UserEmail = selectedRecord && InOut = "IN",CheckIn),Now(),TimeUnit.Minutes)/60 ,2),
                     InOut: "OUT"
                 }
             );
