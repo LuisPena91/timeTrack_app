@@ -50,7 +50,7 @@ Input_Aviva As screen:
                     UserEmail: User(). Email,
                     Date: Today(),
                     StartDate: Now(),
-                    StartTime: Hour(Now()) & ":" & Minute(Now()),
+                    StartTime: Text(Now(),"HH:mm"),
                     Task: ComboboxAvivaTask.Selected.Title,
                     Status: "OPEN"
                 }
@@ -107,7 +107,7 @@ Input_Aviva As screen:
                 ),
                 {
                     EndDate: Now(),
-                    EndTime: Hour(Now()) & ":" & Minute(Now()),
+                    EndTime: Text(Now(),"HH:mm"),
                     Time: DateDiff(LookUp(Productivity,UserEmail=selectedRecord && Status = "OPEN",StartDate),Now(),TimeUnit.Minutes)/60,
                     Status: "CLOSE"
                 }
@@ -224,7 +224,7 @@ Input_Aviva As screen:
                 ),
                 {
                     CheckOut: Now(),
-                    CheckOutTime: Hour(Now()) & ":" & Minute(Now()),
+                    CheckOutTime: Text(Now(),"HH:mm"),
                     Time: DateDiff(LookUp(CheckInCheckOut, UserEmail = selectedRecord && InOut = "IN",CheckIn),Now(),TimeUnit.Minutes)/60 ,
                     InOut: "OUT"
                 }
@@ -275,7 +275,7 @@ Input_Aviva As screen:
                     CheckIn: Now(),
                     UserId: User().FullName,
                     UserEmail: User().Email,
-                    CheckInTime: Hour(Now()) & ":" & Minute(Now())
+                    CheckInTime: Text(Now(),"HH:mm")
                 }
             );
             Notify(

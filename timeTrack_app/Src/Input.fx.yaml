@@ -98,7 +98,7 @@ Input As screen:
                     UserEmail: User(). Email,
                     Date: Today(),
                     StartDate: Now(),
-                    StartTime: Text(Now(),"HH:mm:ss"),
+                    StartTime: Text(Now(),"HH:mm"),
                     BoxId: If(IsBlank(ComboBoxBoxId.Selected), Upper(TextInputBoxIdAlter.Value), Upper(ComboBoxBoxId.Selected.'Box ID')),
                     Task: ComboBoxTask.Selected.TASK,
                     Project: ComboBoxProject.Selected.PROJECT,
@@ -307,7 +307,7 @@ Input As screen:
                 ),
                 {
                     EndDate: Now(),
-                    EndTime: Hour(Now()) & ":" & Minute(Now()),
+                    EndTime: Text(Now(),"HH:mm"),
                     Time: DateDiff(LookUp(Productivity,UserEmail=selectedRecord && Status = "OPEN",StartDate),Now(),TimeUnit.Minutes)/60,
                     Folders: Value(TextInputFolders.Text),
                     Images: Value(TextInputImages.Text),
@@ -524,7 +524,7 @@ Input As screen:
                 ),
                 {
                     CheckOut: Now(),
-                    CheckOutTime: Hour(Now()) & ":" & Minute(Now()),
+                    CheckOutTime: Text(Now(),"HH:mm"),
                     Time: DateDiff(LookUp(CheckInCheckOut, UserEmail = selectedRecord && InOut = "IN",CheckIn),Now(),TimeUnit.Minutes)/60 ,
                     InOut: "OUT"
                 }
@@ -575,7 +575,7 @@ Input As screen:
                     CheckIn: Now(),
                     UserId: User().FullName,
                     UserEmail: User().Email,
-                    CheckInTime: Hour(Now()) & ":" & Minute(Now())
+                    CheckInTime: Text(Now(),"HH:mm")
                 }
             );
             Notify(

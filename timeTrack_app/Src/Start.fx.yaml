@@ -50,7 +50,7 @@ Start As screen:
                 ),
                 {
                     CheckOut: Now(),
-                    CheckOutTime: Hour(Now()) & ":" & Minute(Now()),
+                    CheckOutTime: Text(Now(),"HH:mm"),
                     Time: DateDiff(LookUp(CheckInCheckOut, UserEmail = selectedRecord && InOut = "IN",CheckIn),Now(),TimeUnit.Minutes)/60 ,
                     InOut: "OUT"
                 }
@@ -92,7 +92,7 @@ Start As screen:
                     CheckIn: Now(),
                     UserId: User().FullName,
                     UserEmail: User().Email,
-                    CheckInTime: Hour(Now()) & ":" & Minute(Now())
+                    CheckInTime: Text(Now(),"HH:mm")
                 }
             );
             UpdateContext({varCheckIn:true,varStartTimerIn:false});
