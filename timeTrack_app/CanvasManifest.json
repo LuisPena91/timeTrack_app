@@ -116,13 +116,13 @@
     "InstrumentationKey": "",
     "LocalDatabaseReferences": "",
     "ManualOfflineProfileId": "",
-    "Name": "Tapscott_TimeTrack",
+    "Name": "WnL_TimeTrack",
     "OriginatingVersion": "1.336",
     "ParserErrorCount": 0,
     "ShowStatusBar": false
   },
   "PublishInfo": {
-    "AppName": "Tapscott_TimeTrack",
+    "AppName": "WnL_TimeTrack",
     "BackgroundColor": "rgba(255, 255, 255, 1)",
     "IconColor": "RGBA(255,255,255,1)",
     "IconName": "",

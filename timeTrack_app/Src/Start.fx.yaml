@@ -123,7 +123,7 @@ Start As screen:
         Size: =13
         Text: =LookUp(CheckInCheckOut,UserEmail = User().Email && InOut = "IN",CheckInTime)
         Width: =108
-        X: =725
+        X: =758
         Y: =24
         ZIndex: =4
 
