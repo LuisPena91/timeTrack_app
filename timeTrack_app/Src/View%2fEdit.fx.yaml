@@ -51,8 +51,8 @@
         Color: =RGBA(0, 0, 0, 1)
         DisabledColor: =RGBA(166, 166, 166, 1)
         Fill: =RGBA(241, 244, 249, 1)
-        Size: =13
-        Text: ="FOLDERS"
+        Size: =12
+        Text: ="DOCUMENTS / FOLDERS"
         X: =79
         Y: =248
         ZIndex: =4
