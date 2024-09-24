@@ -539,3 +539,14 @@
         Y: =248
         ZIndex: =23
 
+    Image4_3 As image:
+        BorderColor: =App.Theme.Colors.Darker40
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Height: =38
+        Image: ='Untitled-Photoroom'
+        Width: =79
+        X: =136
+        Y: =24
+        ZIndex: =24
+

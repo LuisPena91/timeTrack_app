@@ -1620,3 +1620,14 @@ Receive As screen:
         Y: =0
         ZIndex: =10
 
+    Image4_4 As image:
+        BorderColor: =App.Theme.Colors.Darker40
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Height: =38
+        Image: ='Untitled-Photoroom'
+        Width: =79
+        X: =136
+        Y: =24
+        ZIndex: =11
+

@@ -1999,3 +1999,14 @@ Admin As screen:
             Y: =244
             ZIndex: =3
 
+    Image4_6 As image:
+        BorderColor: =App.Theme.Colors.Darker40
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Height: =38
+        Image: ='Untitled-Photoroom'
+        Width: =79
+        X: =136
+        Y: =24
+        ZIndex: =19
+
