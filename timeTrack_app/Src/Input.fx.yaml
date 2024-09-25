@@ -184,6 +184,7 @@ Input As screen:
             	"INDEX",DisplayMode.Edit,
             	"PREP",DisplayMode.Edit,
             	"REASSEMBLY",DisplayMode.Edit,
+                "BARCODE INSERTION", DisplayMode.Edit,
             	DisplayMode.Disabled
             )
         FocusedBorderThickness: =4
