@@ -1501,7 +1501,7 @@ Admin As screen:
             ShowFooter: ="no"
             Width: =1051
             X: =36
-            Y: =63
+            Y: =67
             ZIndex: =1
 
             UserId1 As PowerAppsOneGridTemplate_dataField.textualColumn:
@@ -1619,6 +1619,23 @@ Admin As screen:
                 FieldVariantName: ="textualColumn"
                 Order: =1
                 ZIndex: =40
+
+        ButtonAvivaDownLoad As Button:
+            DisplayMode: =If(LookUp(Users,User().Email = UserEmail,Department) = "AVIVA",DisplayMode.Edit,DisplayMode.Disabled)
+            Height: =32
+            OnSelect: |-
+                =Clear(usersAviva);
+                ForAll(CheckInCheckOut,If(LookUp(Users, And(Users[@UserEmail] = CheckInCheckOut[@UserEmail],Users[@Department] = "AVIVA"),true),Collect(usersAviva,{Name: ThisRecord.UserId , Email:ThisRecord.UserEmail, Date:ThisRecord.Date,Time_In:ThisRecord.CheckInTime, Time_Out:ThisRecord.CheckOutTime, Total_time: ThisRecord.Time})));
+                ClearCollect(email,{email:User().Email});
+                
+                Set(varJSONaviva,JSON(usersAviva));
+                Set(varEmail,JSON(email));
+                AvivaEmail.Run(varJSONaviva,varEmail);
+            Text: ="Aviva Download"
+            Width: =142
+            X: =945
+            Y: =8
+            ZIndex: =6
 
     Container13 As groupContainer.manualLayoutContainer:
         DropShadow: =DropShadow.Light

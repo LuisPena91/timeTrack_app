@@ -1,0 +1,10 @@
+[
+  {
+    "ApiId": "/providers/microsoft.powerapps/apis/shared_logicflows",
+    "FlowNameId": "f26066d5-c40e-45bb-a91c-10cc2e0708a0",
+    "Name": "AvivaEmail",
+    "ServiceKind": "ConnectedWadl",
+    "Type": "ServiceInfo",
+    "WorkflowEntityId": "0ae9b488-407f-ef11-ac21-6045bdee1a48"
+  }
+]
