@@ -78,6 +78,7 @@
       "pdffunction": false,
       "powerfxdecimal": false,
       "powerfxv1": false,
+      "preferpayamlv3inux": false,
       "primaryoutputpropertycoerciondeprecated": true,
       "proactivecontrolrename": false,
       "projectionmapping": true,
@@ -100,7 +101,7 @@
       "zeroalltabindexes": false
     },
     "Author": "",
-    "BindingErrorCount": 0,
+    "BindingErrorCount": 2,
     "ContainsThirdPartyPcfControls": false,
     "DefaultConnectedDataSourceMaxGetRowsCount": 2000,
     "DocumentAppType": "DesktopOrTablet",
@@ -119,7 +120,7 @@
     "ManualOfflineProfileId": "",
     "Name": "WeLP_TimeTrack",
     "OriginatingVersion": "1.336",
-    "ParserErrorCount": 0,
+    "ParserErrorCount": 1,
     "ShowStatusBar": false
   },
   "PublishInfo": {

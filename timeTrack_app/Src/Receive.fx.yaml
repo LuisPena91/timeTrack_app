@@ -1371,7 +1371,7 @@ Receive As screen:
                 )
             );
             
-            ForAll(BoxesReceive,Patch(BoxesList,Defaults(BoxesList),{'Box ID':Upper(ThisRecord.'Box ID'),Project:ThisRecord.Project,'Date IN':ThisRecord.'Date IN',Status:ThisRecord.Status,Id:Upper(ThisRecord.Id)}));
+            ForAll(BoxesReceive,If(LookUp(BoxesList,BoxesList[@Id] = ThisRecord.Id,true),,Patch(BoxesList,Defaults(BoxesList),{'Box ID':Upper(ThisRecord.'Box ID'),Project:ThisRecord.Project,'Date IN':ThisRecord.'Date IN',Status:ThisRecord.Status,Id:Upper(ThisRecord.Id)})));
             
             Set(varJSON, JSON(BoxesReceive));
             ReceiveFlow.Run(varJSON);
