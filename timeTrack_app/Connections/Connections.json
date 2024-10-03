@@ -60,7 +60,6 @@
       "64195b36-d3e7-4ded-bf6b-fc5a2d8cd1df",
       "014da403-b0e0-409a-aa07-f789f2191730",
       "c8d68348-0211-466f-a330-d15adc3d45b0",
-      "c5b2440a-c8ac-404e-97a2-d911a6abb39c",
       "6f3a4486-619f-4649-bed6-fb8205ff8c6c"
     ],
     "id": "087bd3d6-4383-4ea8-9569-5a4a237452c9"
@@ -236,6 +235,9 @@
       "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1697/1.0.1697.3784/logicflows/icon.png",
       "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
       "parameterHints": {
+        "087bd3d6-4383-4ea8-9569-5a4a237452c9": {
+          "value": "shared_office365"
+        },
         "workflowDisplayName": {
           "value": "AvivaEmail"
         },
@@ -247,6 +249,9 @@
         }
       },
       "parameterHintsV2": {
+        "shared_office365": {
+          "value": "087bd3d6-4383-4ea8-9569-5a4a237452c9"
+        },
         "workflowDisplayName": {
           "value": "AvivaEmail"
         },
@@ -315,50 +320,6 @@
     },
     "dependents": [],
     "id": "7f40631a-47fc-4783-a384-33a72c42b5d7"
-  },
-  "c5b2440a-c8ac-404e-97a2-d911a6abb39c": {
-    "appActions": [
-      "Run"
-    ],
-    "connectionRef": {
-      "apiTier": "Standard",
-      "displayName": "Logic flows",
-      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1697/1.0.1697.3784/logicflows/icon.png",
-      "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
-      "parameterHints": {
-        "087bd3d6-4383-4ea8-9569-5a4a237452c9": {
-          "value": "shared_office365"
-        },
-        "workflowDisplayName": {
-          "value": "ReceiveFlow"
-        },
-        "workflowEntityId": {},
-        "workflowName": {
-          "value": "87f45730-b840-49ad-86c9-f94150731939"
-        }
-      },
-      "parameterHintsV2": {
-        "shared_office365": {
-          "value": "087bd3d6-4383-4ea8-9569-5a4a237452c9"
-        },
-        "workflowDisplayName": {
-          "value": "ReceiveFlow"
-        },
-        "workflowEntityId": {},
-        "workflowName": {
-          "value": "87f45730-b840-49ad-86c9-f94150731939"
-        }
-      }
-    },
-    "datasets": {},
-    "dataSources": [
-      "ReceiveFlow"
-    ],
-    "dependencies": {
-      "shared_office365": "087bd3d6-4383-4ea8-9569-5a4a237452c9"
-    },
-    "dependents": [],
-    "id": "c5b2440a-c8ac-404e-97a2-d911a6abb39c"
   },
   "c8d68348-0211-466f-a330-d15adc3d45b0": {
     "appActions": [
