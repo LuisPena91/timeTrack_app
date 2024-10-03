@@ -1372,10 +1372,11 @@ Receive As screen:
             );
             
             Clear(BoxesDouble);
-            ForAll(BoxesReceive,If(LookUp(BoxesList,BoxesList[@Id] = ThisRecord.Id,true),Collect(BoxesDouble, {'Box ID':Upper(ThisRecord.'Box ID'),Project:ThisRecord.Project,'Date IN':ThisRecord.'Date IN',Status:ThisRecord.Status,Id:Upper(ThisRecord.Id)}),Patch(BoxesList,Defaults(BoxesList),{'Box ID':Upper(ThisRecord.'Box ID'),Project:ThisRecord.Project,'Date IN':ThisRecord.'Date IN',Status:ThisRecord.Status,Id:Upper(ThisRecord.Id)})));
+            ForAll(BoxesReceive,If(LookUp(BoxesList,BoxesList[@Id] = BoxesReceive[@Id],true),Collect(BoxesDouble, {'Box ID':Upper(ThisRecord.'Box ID'),Project:ThisRecord.Project,'Date IN':ThisRecord.'Date IN',Status:ThisRecord.Status,Id:Upper(ThisRecord.Id)}),Patch(BoxesList,Defaults(BoxesList),{'Box ID':Upper(ThisRecord.'Box ID'),Project:ThisRecord.Project,'Date IN':ThisRecord.'Date IN',Status:ThisRecord.Status,Id:Upper(ThisRecord.Id)})));
             
             Set(varJSONdouble, JSON(BoxesDouble));
             Set(varJSON, JSON(BoxesReceive));
+            ReceiveBoxesFlow.Run(varJSON,varJSONdouble);
             
             
             Reset(ComboboxProjectLoad);

@@ -1,0 +1,10 @@
+[
+  {
+    "ApiId": "/providers/microsoft.powerapps/apis/shared_logicflows",
+    "FlowNameId": "f5ddb10d-72bf-8613-711f-81257e324b01",
+    "Name": "ReceiveBoxesFlow",
+    "ServiceKind": "ConnectedWadl",
+    "Type": "ServiceInfo",
+    "WorkflowEntityId": "60881e2a-9881-ef11-ac21-6045bdee1a48"
+  }
+]

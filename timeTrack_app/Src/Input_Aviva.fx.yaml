@@ -56,7 +56,7 @@ Input_Aviva As screen:
                     Date: Today(),
                     StartDate: Now(),
                     StartTime: Text(Now(),"HH:mm"),
-                    Task: ComboboxAvivaTask.Selected.Title,
+                    Task: ComboboxAvivaTask.Selected.TASK,
                     Status: "OPEN"
                 }
             );
