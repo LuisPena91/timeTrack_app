@@ -373,12 +373,20 @@ Input As screen:
         DisplayMode: |-
             =If(
                 LookUp(
-                    Productivity,
-                    Status = "OPEN" && UserEmail = User().Email && Task = "R & D",
-                    true
-                    ),
+                    Users,
+                    UserEmail = User().Email,
+                    Profile
+                ) = "Dev",
                 DisplayMode.Edit,
-                DisplayMode.Disabled
+                If(
+                    LookUp(
+                        Productivity,
+                        Status = "OPEN" && UserEmail = User().Email && Task = "R & D",
+                        true
+                    ),
+                    DisplayMode.Edit,
+                    DisplayMode.Disabled
+                )
             )
         Fill: =App.Theme.Colors.Primary
         Font: =Font.'Courier New'
@@ -404,17 +412,19 @@ Input As screen:
         DisabledBorderColor: =RGBA(244, 244, 244, 1)
         DisabledColor: =RGBA(166, 166, 166, 1)
         DisabledFill: =RGBA(244, 244, 244, 1)
-        DisplayMode: |+
-            =If(
+        DisplayMode: |
+            =Switch(
                 LookUp(
                     Users,
                     UserEmail = User().Email,
                     Profile
-                ) = "Admin",
+                ),
+                "Admin",
+                DisplayMode.Edit,
+                "Dev",
                 DisplayMode.Edit,
                 DisplayMode.Disabled
             )
-            
         Fill: =App.Theme.Colors.Primary
         Font: =Font.'Courier New'
         FontWeight: =FontWeight.Semibold
