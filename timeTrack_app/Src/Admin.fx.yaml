@@ -295,7 +295,7 @@ Admin As screen:
             BorderColor: =RGBA(255, 255, 255, 1)
             BorderStyle: =BorderStyle.Solid
             BorderThickness: =2
-            DisplayMode: =DisplayMode.Edit
+            DisplayMode: =If(LookUp(Users,UserEmail=User().Email,Profile) = "Dev",DisplayMode.Edit,DisplayMode.Disabled)
             FontSize: =25
             FontWeight: =FontWeight.Bold
             Height: =45
@@ -316,7 +316,7 @@ Admin As screen:
             BorderColor: =RGBA(255, 255, 255, 1)
             BorderStyle: =BorderStyle.Solid
             BorderThickness: =2
-            DisplayMode: =DisplayMode.Edit
+            DisplayMode: =If(LookUp(Users,UserEmail=User().Email,Profile) = "Dev",DisplayMode.Edit,DisplayMode.Disabled)
             FontSize: =25
             FontWeight: =FontWeight.Bold
             Height: =45
@@ -337,7 +337,7 @@ Admin As screen:
             BorderColor: =RGBA(255, 255, 255, 1)
             BorderStyle: =BorderStyle.Solid
             BorderThickness: =2
-            DisplayMode: =DisplayMode.Edit
+            DisplayMode: =If(LookUp(Users,UserEmail=User().Email,Profile) = "Dev",DisplayMode.Edit,DisplayMode.Disabled)
             FontSize: =25
             FontWeight: =FontWeight.Bold
             Height: =45
@@ -773,7 +773,7 @@ Admin As screen:
                     BorderThickness: =1
                     DisplayMode: =DisplayMode.View
                     Height: =36
-                    Value: =If(IsBlank(ComboboxProfile.Selected.Value),LookUp(Users,caNumber = TextInputCaNumber_1.Value,Department),ComboboxProfile.Selected.Value)
+                    Value: =If(IsBlank(ComboboxProfile.Selected.Value),LookUp(Users,caNumber = TextInputCaNumber_1.Value,Profile),ComboboxProfile.Selected.Value)
                     Visible: =true
                     Width: =276
                     X: =163
