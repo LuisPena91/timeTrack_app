@@ -1869,12 +1869,15 @@ Admin As screen:
         BorderStyle: =BorderStyle.Solid
         BorderThickness: =2
         DisplayMode: |-
-            =If(
+            =Switch(
                 LookUp(
                     Users,
                     UserEmail = User().Email,
                     Department
-                ) = "ALL",
+                ),
+                "ALL",
+                DisplayMode.Edit,
+                "AVIVA",
                 DisplayMode.Edit,
                 DisplayMode.Disabled
             )
@@ -1906,47 +1909,146 @@ Admin As screen:
         Y: =86
         ZIndex: =14
 
-        PowerBI_2 As Button:
-            BasePaletteColor: =
-            BorderColor: =RGBA(255, 255, 255, 1)
-            BorderStyle: =BorderStyle.Solid
+        Container23 As groupContainer.manualLayoutContainer:
             BorderThickness: =2
-            DisplayMode: =DisplayMode.Edit
-            Font: =Font.'Courier New'
-            FontColor: =RGBA(255, 255, 255, 1)
-            FontSize: =25
-            FontWeight: =FontWeight.Semibold
-            Height: =80
-            IconStyle: ='ButtonCanvas.IconStyle'.Filled
-            OnSelect: |+
-                =Launch("https://xerox-my.sharepoint.com/:u:/p/luis_pena/Ee6chpsqB1hOm-tnS3zjEwwB9YN2OlVCaFtJ3z7Tv21ZJw?e=3O4Y5g");
-                
-            Text: ="Comparatives"
-            Width: =243
-            X: =653
-            Y: =252
-            ZIndex: =1
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(0, 0, 0, 0.3)
+            Height: =277
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =1033
+            X: =40
+            Y: =40
+            ZIndex: =3
 
-        PowerBI_1 As Button:
-            BasePaletteColor: =
-            BorderColor: =RGBA(255, 255, 255, 1)
-            BorderStyle: =BorderStyle.Solid
+            PowerBI_2 As Button:
+                BasePaletteColor: =
+                BorderColor: =RGBA(255, 255, 255, 1)
+                BorderStyle: =BorderStyle.Solid
+                BorderThickness: =2
+                DisplayMode: |-
+                    =Switch(
+                        LookUp(
+                            Users,
+                            UserEmail = User().Email,
+                            Department
+                        ),
+                        "ALL",
+                        DisplayMode.Edit,
+                        DisplayMode.Disabled
+                    )
+                Font: =Font.'Courier New'
+                FontColor: =RGBA(255, 255, 255, 1)
+                FontSize: =25
+                FontWeight: =FontWeight.Semibold
+                Height: =80
+                IconStyle: ='ButtonCanvas.IconStyle'.Filled
+                OnSelect: |+
+                    =Launch("https://xerox-my.sharepoint.com/:u:/p/luis_pena/Ee6chpsqB1hOm-tnS3zjEwwB9YN2OlVCaFtJ3z7Tv21ZJw?e=3O4Y5g");
+                    
+                Text: ="Comparatives"
+                Width: =243
+                X: =569
+                Y: =96
+                ZIndex: =1
+
+            PowerBI_1 As Button:
+                BasePaletteColor: =
+                BorderColor: =RGBA(255, 255, 255, 1)
+                BorderStyle: =BorderStyle.Solid
+                BorderThickness: =2
+                DisplayMode: |-
+                    =Switch(
+                        LookUp(
+                            Users,
+                            UserEmail = User().Email,
+                            Department
+                        ),
+                        "ALL",
+                        DisplayMode.Edit,
+                        DisplayMode.Disabled
+                    )
+                Font: =Font.'Courier New'
+                FontColor: =RGBA(255, 255, 255, 1)
+                FontSize: =25
+                FontWeight: =FontWeight.Semibold
+                Height: =80
+                IconStyle: ='ButtonCanvas.IconStyle'.Filled
+                OnSelect: |+
+                    =Launch("https://xerox-my.sharepoint.com/:u:/p/luis_pena/EdFeBWSk3aJAqSwxMHrjFNIBeH9C1jGKPtaIfW4j71_bcg?e=NK6PsS");
+                    
+                Text: ="DashBoard"
+                Width: =243
+                X: =192
+                Y: =96
+                ZIndex: =2
+
+            Label7 As label:
+                Align: =Align.Center
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderThickness: =1
+                Color: =RGBA(0, 0, 0, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Fill: =RGBA(255, 255, 255, 1)
+                Font: =App.Theme.Font
+                FontWeight: =FontWeight.Bold
+                Height: =35
+                Size: =13
+                Text: ="GI"
+                Width: =107
+                ZIndex: =3
+
+        Container23_1 As groupContainer.manualLayoutContainer:
             BorderThickness: =2
-            DisplayMode: =DisplayMode.Edit
-            Font: =Font.'Courier New'
-            FontColor: =RGBA(255, 255, 255, 1)
-            FontSize: =25
-            FontWeight: =FontWeight.Semibold
-            Height: =80
-            IconStyle: ='ButtonCanvas.IconStyle'.Filled
-            OnSelect: |+
-                =Launch("https://xerox-my.sharepoint.com/:u:/p/luis_pena/EdFeBWSk3aJAqSwxMHrjFNIBeH9C1jGKPtaIfW4j71_bcg?e=NK6PsS");
-                
-            Text: ="GI DashBoard"
-            Width: =243
-            X: =276
-            Y: =252
-            ZIndex: =2
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(0, 0, 0, 0.3)
+            Height: =277
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =1033
+            X: =40
+            Y: =356
+            ZIndex: =4
+
+            Label7_1 As label:
+                Align: =Align.Center
+                BorderColor: =App.Theme.Colors.Darker40
+                BorderThickness: =1
+                Color: =RGBA(0, 0, 0, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Fill: =RGBA(255, 255, 255, 1)
+                Font: =App.Theme.Font
+                FontWeight: =FontWeight.Bold
+                Height: =35
+                Size: =13
+                Text: ="AVIVA"
+                Width: =107
+                ZIndex: =1
+
+            PowerBI_3 As Button:
+                BasePaletteColor: =
+                BorderColor: =RGBA(255, 255, 255, 1)
+                BorderStyle: =BorderStyle.Solid
+                BorderThickness: =2
+                DisplayMode: =DisplayMode.Edit
+                Font: =Font.'Courier New'
+                FontColor: =RGBA(255, 255, 255, 1)
+                FontSize: =25
+                FontWeight: =FontWeight.Semibold
+                Height: =80
+                IconStyle: ='ButtonCanvas.IconStyle'.Filled
+                OnSelect: |+
+                    =Launch("https://xerox-my.sharepoint.com/:u:/p/luis_pena/EW51YzK31J1IvIXce5LezqABLbDfurILzsyKvQJ5Ue17YA?e=JjwBzI");
+                    
+                Text: ="DashBoard"
+                Width: =243
+                X: =392
+                Y: =92
+                ZIndex: =2
 
     Container19 As groupContainer.manualLayoutContainer:
         DropShadow: =DropShadow.Light
